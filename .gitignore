@@ -1,0 +1,8 @@
+xcuserdata/
+MultiRam.xcodeproj/project.xcworkspace/xcshareddata
+.idea
+.DS_Store
+MultiRam/.DS_Store
+/.build/
+/releases/
+/build/

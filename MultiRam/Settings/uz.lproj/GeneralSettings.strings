@@ -1,0 +1,26 @@
+"Title" = "Asosiy";
+"Fuzzy" = "Noaniq";
+"Mixed" = "Aralash";
+"NotificationsAndSounds" = "Bildirishnoma va tovushlar 􀱁";
+"LaunchAtLogin" = "Kirish paytida ishga tushirish";
+"CheckForUpdates" = "Yangilanishlarni avtomatik ravishda tekshirish";
+"CheckNow" = "Hozir tekshir";
+"Open" = "Ochish:";
+"OpenTooltip" = "Ilovani ochish uchun global yorliq.\nOʻzgartirgichlarni ushlab turganda asosiy tugmani qayta-qayta bosish roʻyxatdagi keyingi elementni tanlaydi. Bu rejimda modifikator tugmachalarini bo‘shatish tanlovni tasdiqlaydi va qalqib chiquvchi oynani yopadi.\nStandart: ⌥V.";
+"Pin" = "Mustahkamlash:";
+"PinTooltip" = "Tarix elementini mahkamlash uchun yorliq tugmasi.\nStandart: ⌥P.";
+"Delete" = "O'chirish:";
+"DeleteTooltip" = "Tarix elementini o'chirish uchun yorliq tugmasi.\nStandart: ⌥⌫.";
+"Behavior" = "Xatti-harakat:";
+"PasteAutomatically" = "Avtomatik joylashtirish";
+"PasteWithoutFormatting" = "Formatlashsiz joylashtirish";
+"Modifiers" = "Elementni tanlashda harakatni moslashtiring: \n• Elementni nusxalash uchun %@ tugmasini bosgan holda tanlang. \n• Elementni nusxalash va joylashtirish uchun %@ bosilgan holda tanlang. \n• Nusxa olish, formatlashni tozalash va joylashtirish uchun %@ bosilganda tanlang.";
+"Search" = "Qidirish:";
+"Exact" = "Aniq";
+"Regex" = "Muntazam ifodalar";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

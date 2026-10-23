@@ -1,0 +1,26 @@
+"Title" = "Obecné";
+"LaunchAtLogin" = "Spustit při přihlášení";
+"CheckForUpdates" = "Automaticky kontrolovat aktualizace";
+"CheckNow" = "Zkontrolovat teď";
+"Open" = "Otevřít:";
+"OpenTooltip" = "Globální klávesová zkratka pro otevření aplikace.\nPakliže opakovaně stisknete hlavní klávesu a podržíte modifikátory, vyberete další položku v seznamu. V tomto režimu uvolnění modifikátorových kláves potvrdí výběr a zavře vyskakovací okno.\nVýchozí: ⌥V.";
+"Pin" = "Připnout:";
+"PinTooltip" = "Klávesová zkratka pro připnutí položky.\nVýchozí: ⌥P.";
+"Delete" = "Smazat:";
+"DeleteTooltip" = "Přibližné";
+"Behavior" = "Chování:";
+"PasteAutomatically" = "Vložit automaticky";
+"PasteWithoutFormatting" = "Vložit bez formátování";
+"Modifiers" = "Přizpůsob chování při volbě položky:\n• Vyber se stisknutím ⌘ pro zkopírování položky.\n• Vyber se stisknutím ⌥ pro zkopírování a vložení položky.\n• Vyber se stisknutím ⌥⇧ pro zkopírování, odstranění formátování a vložení položky.";
+"Search" = "Vyhledávání:";
+"Exact" = "Přesné";
+"Fuzzy" = "Přibližné";
+"Regex" = "Regulární výrazy";
+"Mixed" = "Smíšené";
+"NotificationsAndSounds" = "Notifikace a zvuky 􀱁";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

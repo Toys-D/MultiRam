@@ -1,0 +1,26 @@
+"Title" = "כללי";
+"LaunchAtLogin" = "להפעיל עם הכניסה למערכת";
+"CheckForUpdates" = "לבדוק אוטומטית אם יש עדכונים";
+"CheckNow" = "לבדוק עכשיו";
+"Open" = "פתיחה:";
+"OpenTooltip" = "מקש קיצור גלובלי לפתיחת היישום.\nלחיצה חוזרת על המקש הראשי תוך החזקת מקשי השינוי תבחר את הפריט הבא ברשימה. במצב זה, שחרור מקשי השינוי יאשר את הבחירה ויסגור את החלון הקופץ.\nברירת מחדל: ⌥V.";
+"Pin" = "נעיצה:";
+"PinTooltip" = "צירוף מקשים לנעיצת פריט.\nברירת מחדל: %@P.";
+"Delete" = "מחיקה:";
+"DeleteTooltip" = "צירוף מקשים למחיקת פריט מההיסטוריה.\nברירת מחדל: %@⌫.";
+"Behavior" = "התנהגות:";
+"PasteAutomatically" = "להדביק אוטומטית";
+"PasteWithoutFormatting" = "להדביק בלי עיצוב";
+"Modifiers" = "התאמת ההתנהגות בעת בחירת פריט:\n• יש לבחור תוך החזקה של %@ כדי להעתיק פריט.\n• יש לבחור תוך החזקה של %@ כדי להעתיק ולהדביק פריט.\n• יש לבחור תוך החזקה של %@ כדי להעתיק, להסיר את העיצוב ולהדביק.";
+"Search" = "חיפוש:";
+"Exact" = "מדויק";
+"Fuzzy" = "מעורפל";
+"Regex" = "ביטויים רגולריים";
+"Mixed" = "מעורבב";
+"NotificationsAndSounds" = "התראות וצלילים 􀱁";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

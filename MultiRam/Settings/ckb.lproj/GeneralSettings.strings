@@ -1,0 +1,26 @@
+"Title" = "گشتی";
+"LaunchAtLogin" = "کارپێکردن لەکاتی چوونەژوورەوەدا";
+"CheckForUpdates" = "پشکنینی خۆکارانە بۆ نوێکارییەکان";
+"CheckNow" = "ئێستا بپشکنە";
+"Open" = "کردنەوە:";
+"OpenTooltip" = "کورتەدوگمەی گشتی بۆ کردنەوەی بەرنامەکە.\nداگرتنی دووبارەی دوگمە سەرەکییەکە لەکاتی هێشتنەوەی دوگمە یارمەتیدەرەکان، ئایتەمی دواتر لە لیستەکەدا دیاری دەکات. لەم حاڵەتەدا، بەردانی دوگمە یارمەتیدەرەکان دیاریکردنەکە پشتڕاست دەکاتەوە و پۆپئەپەکە دادەخات.\nبنەڕەت: ⌥V.";
+"Pin" = "چەسپاندن:";
+"PinTooltip" = "کورتەدوگمە بۆ چەسپاندنی ئایتەمی مێژوو.\nبنەڕەت: ⌥P.";
+"Delete" = "سڕینەوە:";
+"DeleteTooltip" = "کورتەدوگمە بۆ سڕینەوەی ئایتەمی مێژوو.\nبنەڕەت: ⌥⌫.";
+"Behavior" = "ڕەفتار:";
+"PasteAutomatically" = "پەیستکردنی خۆکارانە";
+"PasteWithoutFormatting" = "پەیستکردن بەبێ فۆرمات";
+"Modifiers" = "ڕەفتاری بەرنامەکە لە کاتی دیاریکردنی ئایتەمدا بگۆڕە:\n• بە داگرتنی %@ دیاریبکە بۆ کۆپیکردنی ئایتەم.\n• بە داگرتنی %@ دیاریبکە بۆ کۆپیکردن و پەیستکردنی ئایتەم.\n• بە داگرتنی %@ دیاریبکە بۆ کۆپیکردن، سڕینەوەی فۆرمات، و پەیستکردنی ئایتەم.";
+"Search" = "گەڕان:";
+"Exact" = "تەواو";
+"Fuzzy" = "لێکچوو";
+"Regex" = "ڕێجێکسەکان";
+"Mixed" = "تێکەڵ";
+"NotificationsAndSounds" = "ئاگادارییەکان و دەنگەکان 􀱁";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

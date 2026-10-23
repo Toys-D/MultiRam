@@ -1,0 +1,26 @@
+"Title" = "General";
+"LaunchAtLogin" = "Abrir al iniciar sesión";
+"CheckForUpdates" = "Buscar actualizaciones automáticamente";
+"CheckNow" = "Comprobar ahora";
+"Open" = "Abrir:";
+"OpenTooltip" = "Tecla de acceso directo global para abrir la aplicación.\nUna pulsación repetida de la tecla principal mientras se mantienen pulsados los modificadores seleccionará el siguiente elemento de la lista. En este modo, al soltar las teclas modificadoras se confirmará la selección y se cerrará la ventana emergente.\nPor defecto: ⌥V.";
+"Pin" = "Anclar:";
+"PinTooltip" = "Combinación de teclas para anclar un elemento del historial.\nPor defecto: ⌥P.";
+"Delete" = "Borrar:";
+"DeleteTooltip" = "Combinación de teclas para borrar un elemento del historial.\nPor defecto: ⌥⌫.";
+"Behavior" = "Comportamiento:";
+"PasteAutomatically" = "Pegar automáticamente";
+"PasteWithoutFormatting" = "Pegar sin formato";
+"Modifiers" = "Personalizar el comportamiento al seleccionar un elemento:\n• Seleccionar presionando %@ para copiar el elemento.\n• Seleccionar presionando %@ para copiar y pegar un elemento.\n• Seleccionar presionando %@ para copiar, quitar formato y pegar un elemento.";
+"Search" = "Buscar:";
+"Exact" = "Exacta";
+"Fuzzy" = "Aproximada";
+"Regex" = "Expresiones regulares";
+"Mixed" = "Mezclada";
+"NotificationsAndSounds" = "Notificaciones y sonidos 􀱁";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

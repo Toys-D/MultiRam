@@ -1,0 +1,27 @@
+"CheckNow" = "Kontroli nun";
+"Open" = "Malfermi:";
+"Pin" = "Fiksi:";
+"Delete" = "Forigi:";
+"Behavior" = "Konduto:";
+"PasteAutomatically" = "Alglui aŭtomate";
+"PasteWithoutFormatting" = "Alglui sen tekstaranĝo";
+"Search" = "Serĉi:";
+"Regex" = "Regulaj esprimoj";
+"Title" = "Ĝenerale";
+"LaunchAtLogin" = "Lanĉi dum ensaluto";
+"CheckForUpdates" = "Serĉi ĝisdatigojn aŭtomate";
+"OpenTooltip" = "Ĝenerala fulmoklavo por malfermi la aplikaĵon.\nRipetita premo de la ĉefa klavo dum tenado de modifaj klavoj elektos la sekvan eron en la listo. En ĉi tiu reĝimo, liberigo de la modifaj klavoj konfirmos la elekton kaj fermos la ŝprucfenestron.\nDefaŭlta: ⌥V.";
+"PinTooltip" = "Fulmoklavo por fiksi historian eron.\nDefaŭlta: ⌥P.";
+"DeleteTooltip" = "Fulmoklavo por forigi historian eron.\nDefaŭlta: ⌥⌫.";
+"Behavior" = "Konduto:";
+"Modifiers" = "";
+"Exact" = "Ekzakta";
+"Fuzzy" = "Proksimuma";
+"Mixed" = "Miksita";
+"NotificationsAndSounds" = "Sciigoj kaj sonoj 􀱁";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

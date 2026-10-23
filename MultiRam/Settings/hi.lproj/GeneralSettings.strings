@@ -1,0 +1,26 @@
+"Title" = "सामान्य";
+"LaunchAtLogin" = "";
+"CheckForUpdates" = "";
+"CheckNow" = "";
+"Open" = "";
+"OpenTooltip" = "";
+"Pin" = "";
+"PinTooltip" = "";
+"Delete" = "";
+"DeleteTooltip" = "";
+"Behavior" = "";
+"PasteAutomatically" = "";
+"PasteWithoutFormatting" = "";
+"Modifiers" = "";
+"Search" = "";
+"Exact" = "";
+"Fuzzy" = "";
+"Regex" = "";
+"Mixed" = "";
+"NotificationsAndSounds" = "";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";

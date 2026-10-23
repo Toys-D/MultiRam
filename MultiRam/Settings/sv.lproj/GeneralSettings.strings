@@ -1,0 +1,27 @@
+"LaunchAtLogin" = "Starta vid inloggning";
+"PasteWithoutFormatting" = "Klistra in utan formatering";
+"CheckForUpdates" = "Kontrollera efter uppdateringar automatiskt";
+"CheckNow" = "Kontrollera nu";
+"Title" = "Allmänt";
+"Open" = "Öppna:";
+"Delete" = "Ta bort:";
+"OpenTooltip" = "Globalt kortkommando för att öppna applikationen.\nFörval: ⌥V.";
+"DeleteTooltip" = "Kortkommando för att ta bort historikpost\nFörval: ⌥⌫.";
+"Behavior" = "Beteende:";
+"Search" = "Sök:";
+"Exact" = "Exakt";
+"Fuzzy" = "Ungefärlig";
+"Mixed" = "Blandad";
+"NotificationsAndSounds" = "Notiser och ljud 􀱁";
+"PasteAutomatically" = "Klistra in automatiskt";
+"Pin" = "Fästa:";
+"Behavior" = "Beteende:";
+"PinTooltip" = "Kortkommando för att fästa historikpost .\nFörval: ⌥P.";
+"Modifiers" = "Anpassa beteendet vid val av post:\n• Välj med %@ nedtryckt för att kopiera posten.\n• Välj med %@ nedtryckt för att kopiera och klistra in posten.\n• Välj med %@ nedtryckt för att kopiera, rensa formatering och klistra in posten.";
+"Regex" = "Reguljära uttryck";
+
+"OpenFallback" = "Fallback:";
+"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
+"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
+"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
+"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";
