@@ -39,7 +39,22 @@ Turn MultiRam on in that list. macOS applies the permission only to a newly star
 2. Open it and drag MultiRam to Applications, replacing the old copy.
 3. Open MultiRam from Applications. Its icon appears in the menu bar.
 
-The release is signed with an Apple Development certificate and is not notarized. If macOS blocks the first launch, open System Settings → Privacy & Security and choose **Open Anyway**.
+#### Why macOS asks for permission on the first launch
+
+My apps are not in the Mac App Store, and I don't pay Apple's yearly developer fee ($99), so Apple does not sign or notarize them. macOS blocks every such app the first time it is opened — this says nothing bad about the app itself. Allow it once, and from then on it opens like any other app.
+
+**macOS 15 and later:**
+
+1. Double-click **MultiRam** in Applications. macOS says it cannot verify the app — press **Done**, not "Move to Trash".
+2. Open **System Settings ▸ Privacy & Security**.
+3. Scroll down to **Security**. Next to the message that MultiRam was blocked, press **Open Anyway** (the button stays there for about an hour after the attempt).
+4. Confirm with your password or Touch ID and press **Open Anyway** once more.
+
+macOS remembers the choice: this copy of MultiRam opens by itself from now on. A newer version downloaded later is allowed the same way.
+
+**macOS 14 and earlier:** right-click (or Control-click) MultiRam in Applications, choose **Open**, then press **Open** in the dialog.
+
+**Or in Terminal**, on any version: `xattr -dr com.apple.quarantine "/Applications/MultiRam.app"` — this removes the "downloaded from the internet" mark, and MultiRam opens without the warning.
 
 ### Build from source
 
@@ -102,7 +117,22 @@ MultiRam History — лёгкий менеджер истории буфера �
 2. Откройте его и перетащите MultiRam в «Программы» с заменой.
 3. Запустите MultiRam из «Программ». Значок появится в строке меню.
 
-Релиз подписан сертификатом Apple Development и не заверен Apple. Если macOS блокирует первый запуск, откройте «Системные настройки → Конфиденциальность и безопасность» и нажмите **«Всё равно открыть»**.
+#### Почему macOS спрашивает разрешение при первом запуске
+
+Моих программ нет в Mac App Store, и я не плачу Apple ежегодный взнос разработчика ($99), поэтому Apple их не подписывает и не заверяет. Любую такую программу macOS при первом запуске блокирует — о самой программе это ничего плохого не говорит. Разрешите её один раз, и дальше она открывается как любая другая.
+
+**macOS 15 и новее:**
+
+1. Дважды щёлкните **MultiRam** в «Программах». macOS скажет, что не может проверить программу, — нажмите **«Готово»**, а не «Переместить в Корзину».
+2. Откройте **Системные настройки ▸ Конфиденциальность и безопасность**.
+3. Пролистайте вниз до раздела **«Безопасность»**. Рядом с сообщением, что программа «MultiRam» заблокирована, нажмите **«Всё равно открыть»** (кнопка держится там около часа после попытки).
+4. Подтвердите паролем или Touch ID и ещё раз нажмите **«Всё равно открыть»**.
+
+macOS запомнит выбор: эта копия MultiRam дальше открывается сама. Новую версию, скачанную позже, разрешают так же.
+
+**macOS 14 и старше:** правый щелчок (или Control-щелчок) по MultiRam в «Программах» → **«Открыть»**, затем **«Открыть»** в окне вопроса.
+
+**Или в Терминале**, на любой версии: `xattr -dr com.apple.quarantine "/Applications/MultiRam.app"` — команда убирает пометку «загружено из интернета», и MultiRam открывается без предупреждения.
 
 ### Сборка из исходников
 
