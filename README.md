@@ -21,7 +21,7 @@ MultiRam History is a lightweight clipboard history manager for macOS. It keeps 
 - Under an image in the side panel, **Open in…** buttons list the image editors and viewers found on your Mac (Preview, Photoshop, Illustrator and others). The app receives a read-only copy with the original bytes.
 - Search the history and pin items with the **PIN** button in the row.
 - Text wraps to four lines; longer items end with an ellipsis.
-- Settings, About and Quit are in the menu bar icon menu.
+- Settings, About and Quit are in the menu bar icon menu. Settings have a sidebar with search: General, Shortcuts, History Window, Menu Bar, Storage, Pins, Exclusions, Privacy and About. General shows whether automatic pasting is allowed.
 - The window stays on screen, also when it opens near the bottom edge.
 
 ### Automatic pasting
@@ -99,7 +99,7 @@ MultiRam History — лёгкий менеджер истории буфера �
 - Под картинкой в боковой панели — кнопки **«Открыть в…»** для графических редакторов и просмотрщиков, найденных на Mac (Просмотр, Photoshop, Illustrator и другие). Программе передаётся копия с исходными байтами, доступная только для чтения.
 - Поиск по истории и закрепление записей кнопкой **PIN** прямо в строке.
 - Текст переносится до четырёх строк; длинные записи заканчиваются многоточием.
-- Настройки, «О программе» и выход — в меню значка в строке меню.
+- Настройки, «О программе» и выход — в меню значка в строке меню. В настройках слева поиск и разделы: Основные, Клавиши, Окно истории, Строка меню, Хранение, Прикреплённые, Исключения, Конфиденциальность и О программе. В «Основных» видно, разрешена ли автоматическая вставка.
 - Окно остаётся в пределах экрана, в том числе при открытии у нижнего края.
 
 ### Автоматическая вставка
