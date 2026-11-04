@@ -11,6 +11,8 @@ struct HistoryWindowSettingsPane: View {
   @Default(.showSearch) private var showSearch
   @Default(.searchVisibility) private var searchVisibility
   @Default(.windowPosition) private var windowPosition
+  @Default(.highlightPinned) private var highlightPinned
+  @Default(.pinnedHighlightColor) private var pinnedHighlightColor
 
   @State private var screens = NSScreen.screens
 
@@ -118,11 +120,44 @@ struct HistoryWindowSettingsPane: View {
           }
           .help(Text("ShowSpecialSymbolsTooltip", tableName: "AppearanceSettings"))
         }
+
+        Section {
+          LabeledContent {
+            HStack {
+              if pinnedHighlightColor != Defaults.Keys.pinnedHighlightColor.defaultValue {
+                Button {
+                  _pinnedHighlightColor.reset()
+                } label: {
+                  Image(systemName: "arrow.uturn.backward.circle.fill")
+                    .imageScale(.large)
+                }
+                .buttonStyle(.borderless)
+                .help(Text("highlight_pinned_reset"))
+              }
+              ColorPicker("", selection: pinnedColor, supportsOpacity: false)
+                .labelsHidden()
+                .disabled(!highlightPinned)
+              Toggle("", isOn: $highlightPinned)
+                .labelsHidden()
+            }
+          } label: {
+            Text("highlight_pinned")
+            Text("highlight_pinned_description")
+          }
+        }
       }
       .formStyle(.grouped)
     }
     .onReceive(NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)) { _ in
       screens = NSScreen.screens
+    }
+  }
+
+  private var pinnedColor: Binding<Color> {
+    Binding {
+      Color(nsColor: PinnedHighlight.color(hex: pinnedHighlightColor) ?? .systemTeal)
+    } set: { color in
+      pinnedHighlightColor = PinnedHighlight.hex(of: NSColor(color))
     }
   }
 

@@ -35,6 +35,7 @@ enum KeyChord: CaseIterable {
   case openPreferences
   case pinOrUnpin
   case selectCurrentItem
+  case togglePreview
   case close
   case unknown
 
@@ -117,6 +118,9 @@ enum KeyChord: CaseIterable {
       self = .selectCurrentItem
     case (.escape, _):
       self = .close
+    case (.space, []),
+         (.y, [.command]):
+      self = .togglePreview
     case (_, _) where !modifierFlags.isDisjoint(with: [.command, .control, .option]):
       self = .ignored
     default:

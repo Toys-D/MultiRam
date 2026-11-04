@@ -1,5 +1,33 @@
+import AppKit
 import Defaults
 import SwiftUI
+
+// The tint of pinned rows is stored as an sRGB hex string like "#14B8D1".
+enum PinnedHighlight {
+  // Light enough that the title keeps its contrast in both appearances.
+  static let opacity = 0.2
+
+  static func color(hex: String) -> NSColor? {
+    var digits = hex.trimmingCharacters(in: .whitespaces)
+    if digits.hasPrefix("#") { digits.removeFirst() }
+    guard digits.count == 6, let value = UInt32(digits, radix: 16) else { return nil }
+    return NSColor(
+      srgbRed: CGFloat((value >> 16) & 0xFF) / 255,
+      green: CGFloat((value >> 8) & 0xFF) / 255,
+      blue: CGFloat(value & 0xFF) / 255,
+      alpha: 1
+    )
+  }
+
+  static func hex(of color: NSColor) -> String {
+    let rgb = color.usingColorSpace(.sRGB) ?? color
+    func channel(_ value: CGFloat) -> Int { Int((min(max(value, 0), 1) * 255).rounded()) }
+    return String(
+      format: "#%02X%02X%02X",
+      channel(rgb.redComponent), channel(rgb.greenComponent), channel(rgb.blueComponent)
+    )
+  }
+}
 
 enum SelectionAppearance {
   case none
@@ -49,6 +77,8 @@ struct ListItemView<Title: View, ID: Hashable>: View {
   @ViewBuilder var title: () -> Title
 
   @Default(.showApplicationIcons) private var showIcons
+  @Default(.highlightPinned) private var highlightPinned
+  @Default(.pinnedHighlightColor) private var pinnedHighlightColor
   @Environment(AppState.self) private var appState
   @Environment(ModifierFlags.self) private var modifierFlags
 
@@ -85,10 +115,20 @@ struct ListItemView<Title: View, ID: Hashable>: View {
     .foregroundStyle(isSelected ? Color.white : .primary)
     // macOS 26 broke hovering if no background is present.
     // The slight opacity white background is a workaround.
-    .background(isSelected ? Color.accentColor.opacity(0.8) : .white.opacity(0.001))
+    .background(rowBackground)
     .clipShape(selectionAppearance.rect(cornerRadius: Popup.cornerRadius))
     .hoverSelectionId(selectionId)
     .help(help ?? "")
+  }
+
+  private var rowBackground: Color {
+    if isSelected {
+      return Color.accentColor.opacity(0.8)
+    }
+    if isPinned, highlightPinned, let tint = PinnedHighlight.color(hex: pinnedHighlightColor) {
+      return Color(nsColor: tint).opacity(PinnedHighlight.opacity)
+    }
+    return .white.opacity(0.001)
   }
 
   // Rows without extra content keep an empty slot so the pin column stays aligned.

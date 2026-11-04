@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08D4CBC551AA6E43838EDF00 /* HistoryFeaturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51431979E69F6285562877 /* HistoryFeaturesTests.swift */; };
+		F1F0F7BDABEF68873E91422C /* HistoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B5AEE1D9E68628BFF790E /* HistoryFilter.swift */; };
 		A4E428FAF483C0F51B43B32D /* SettingsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9360A9C460E3A2A68EA93A /* SettingsComponents.swift */; };
 		9E725BED8CE743715E2D996D /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F81759841B3AF2F6B8E2B61 /* SettingsWindow.swift */; };
 		1E9F713049D4C5DFCD2AFB52 /* AppRelauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A74F4CE42ACF67715F19AF /* AppRelauncher.swift */; };
@@ -185,6 +187,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6C51431979E69F6285562877 /* HistoryFeaturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFeaturesTests.swift; sourceTree = "<group>"; };
+		C62B5AEE1D9E68628BFF790E /* HistoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilter.swift; sourceTree = "<group>"; };
 		8B9360A9C460E3A2A68EA93A /* SettingsComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponents.swift; sourceTree = "<group>"; };
 		7F81759841B3AF2F6B8E2B61 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		48A74F4CE42ACF67715F19AF /* AppRelauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRelauncher.swift; sourceTree = "<group>"; };
@@ -696,6 +700,7 @@
 		DA360DB11E3DF137005C6F6B /* MultiRamTests */ = {
 			isa = PBXGroup;
 			children = (
+				6C51431979E69F6285562877 /* HistoryFeaturesTests.swift */,
 				36973EB6F57E0FE1CDD05AE8 /* PasteAccessTests.swift */,
 				09B72B2939EFBD786088694A /* LocalizationTests.swift */,
 				449B114C08D46A34C593F8F2 /* OpenWithTests.swift */,
@@ -789,6 +794,7 @@
 		DAEE38451E3DBEB100DD2966 /* MultiRam */ = {
 			isa = PBXGroup;
 			children = (
+				C62B5AEE1D9E68628BFF790E /* HistoryFilter.swift */,
 				48A74F4CE42ACF67715F19AF /* AppRelauncher.swift */,
 				F6B8C1EE6FCC25574915FEA6 /* OpenWithController.swift */,
 				CEE2D5EA5D1F3D567C6F9AF1 /* ImageEditorCatalog.swift */,
@@ -1044,6 +1050,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08D4CBC551AA6E43838EDF00 /* HistoryFeaturesTests.swift in Sources */,
 				3720F0ECFF826D419C75E5EB /* PasteAccessTests.swift in Sources */,
 				B29BAA0141E4E3DE61BF1A5A /* LocalizationTests.swift in Sources */,
 				198C421D00D35931618623F2 /* OpenWithTests.swift in Sources */,
@@ -1064,6 +1071,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F0F7BDABEF68873E91422C /* HistoryFilter.swift in Sources */,
 				A4E428FAF483C0F51B43B32D /* SettingsComponents.swift in Sources */,
 				9E725BED8CE743715E2D996D /* SettingsWindow.swift in Sources */,
 				1E9F713049D4C5DFCD2AFB52 /* AppRelauncher.swift in Sources */,
@@ -1694,7 +1702,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 71;
+				CURRENT_PROJECT_VERSION = 72;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1709,7 +1717,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = local.multiram.MultiRam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1730,7 +1738,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 71;
+				CURRENT_PROJECT_VERSION = 72;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1745,7 +1753,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = local.multiram.MultiRam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,6 +1,18 @@
-# MultiRam 1.3.0
+# MultiRam 1.4.0
 
-Версия приложения: **1.3.0**, сборка **71**. macOS **14 или новее**, Intel и Apple Silicon.
+Версия приложения: **1.4.0**, сборка **72**. macOS **14 или новее**, Intel и Apple Silicon.
+
+**Фильтры.** Над списком — «Всё / Текст / Картинки / Файлы». Фильтр действует и на закреплённые записи и сбрасывается на «Всё», когда окно закрывается.
+
+**Предпросмотр.** Пробел (когда поле поиска пустое) или ⌘Y открывает выбранную запись в боковой панели, повторное нажатие закрывает.
+
+**Склейка нескольких записей.** Shift+↑/↓ или ⌘+щелчок выделяют несколько записей (номера показывают порядок); Return вставляет их текст одним блоком, каждую запись с новой строки. Картинки и файлы при склейке пропускаются.
+
+**Срок хранения.** «Хранение → Хранить записи»: всегда, 1 день, неделю, месяц, 3 месяца или год. Более старые незакреплённые записи удаляются при запуске, раз в час и при смене срока.
+
+**Цвет закреплённых.** Закреплённые строки слегка подкрашены; в «Окне истории» подсветку можно выключить и выбрать цвет (по умолчанию — цвет логотипа).
+
+## Изменения 1.3.0
 
 **Новые настройки.** Окно настроек перерисовано: слева поиск и разделы с иконками (Основные, Клавиши, Окно истории, Строка меню, Хранение, Прикреплённые, Исключения, Конфиденциальность, О программе), справа настройки в карточках. Поиск находит раздел и по названию отдельной настройки. Цвет акцента взят из логотипа.
 
@@ -61,18 +73,18 @@ python3 scripts/package-release.py \
   --identity "Apple Development: toysappleid@gmail.com (3P8J62VT66)"
 ```
 
-Результат находится в `releases/MultiRam-1.3.0/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
+Результат находится в `releases/MultiRam-1.4.0/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
 
 ## Публикация на GitHub
 
 Кнопка «Скачать» в README ведёт на `releases/latest/download/MultiRam.dmg`, поэтому к каждому релизу прикладывается копия DMG с постоянным именем `MultiRam.dmg`. Версию в тексте кнопки README нужно обновить.
 
 ```sh
-cp releases/MultiRam-1.3.0/MultiRam-1.3.0.dmg .build/GitHubRelease/MultiRam.dmg
-gh release create v1.3.0 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.3.0" \
+cp releases/MultiRam-1.4.0/MultiRam-1.4.0.dmg .build/GitHubRelease/MultiRam.dmg
+gh release create v1.4.0 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.4.0" \
   --notes-file .build/GitHubRelease/notes.md --latest \
-  releases/MultiRam-1.3.0/MultiRam-1.3.0.dmg .build/GitHubRelease/MultiRam.dmg \
-  releases/MultiRam-1.3.0/MultiRam-1.3.0.app.zip releases/MultiRam-1.3.0/SHA256SUMS.txt
+  releases/MultiRam-1.4.0/MultiRam-1.4.0.dmg .build/GitHubRelease/MultiRam.dmg \
+  releases/MultiRam-1.4.0/MultiRam-1.4.0.app.zip releases/MultiRam-1.4.0/SHA256SUMS.txt
 ```
 
 Репозиторий приватный: ссылки работают для тех, у кого есть доступ к нему.
@@ -93,7 +105,7 @@ gh release create v1.3.0 --repo Toys-D/MultiRam --target <commit> --title "Multi
 
 ```sh
 osascript -e 'tell application id "local.multiram.MultiRam" to quit'
-rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.3.0/MultiRam.app /Applications/
+rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.4.0/MultiRam.app /Applications/
 codesign -dvv /Applications/MultiRam.app 2>&1 | grep 'Authority=Apple Development'
 open /Applications/MultiRam.app
 ```

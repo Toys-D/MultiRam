@@ -213,6 +213,9 @@ struct ShortcutsSettingsPane: View {
           } label: {
             Text(settingsLabel("Delete", table: "GeneralSettings"))
           }
+        } footer: {
+          Text("shortcuts_hint")
+            .settingsFootnote()
         }
       }
       .formStyle(.grouped)

@@ -112,6 +112,7 @@ class Popup {
 
   func reset() {
     state = .toggle
+    AppState.shared.history.filter = .all
     KeyboardShortcuts.enable(.popup, .popupFallback)
     // Reopen with the list only and free the large image of the previous session.
     let item = detailItem

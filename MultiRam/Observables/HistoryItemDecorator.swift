@@ -40,6 +40,7 @@ class HistoryItemDecorator: Identifiable, Hashable, HasVisibility {
   // Cached so view bodies never touch the model, which may already be deleted from the store.
   private(set) var hasImage = false
   private(set) var hasExpandableContent = false
+  private(set) var kind = HistoryItemKind.text
   @ObservationIgnored private var imageSizeCache: NSSize?
   @ObservationIgnored private var imageSizeResolved = false
   var applicationImage: ApplicationImage
@@ -77,6 +78,7 @@ class HistoryItemDecorator: Identifiable, Hashable, HasVisibility {
   func refreshContentFlags() {
     guard !item.isDeleted else { return }
     hasImage = item.imageData != nil
+    kind = HistoryItemKind.of(hasFiles: !item.fileURLs.isEmpty && !item.universalClipboard, hasImage: hasImage)
     let text = self.text
     hasExpandableContent = hasImage || text.contains(where: \.isNewline) || text.count > Self.expandableTextLength
   }

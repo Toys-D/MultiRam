@@ -7,7 +7,7 @@ import SwiftUI
 final class AppState {
   static let shared = AppState(history: History.shared, footer: Footer())
 
-  let multiSelectionEnabled = false
+  let multiSelectionEnabled = true
 
   var appDelegate: AppDelegate?
   var popup: Popup
@@ -42,9 +42,9 @@ final class AppState {
   @MainActor
   func select() {
     if !navigator.selection.isEmpty {
-      if navigator.isMultiSelectInProgress {
-        navigator.isManualMultiSelect = false
-        history.startPasteStack(selection: &navigator.selection)
+      navigator.isManualMultiSelect = false
+      if navigator.selection.count > 1 {
+        history.pasteMerged(navigator.selection.items)
       } else {
         history.select(navigator.selection.first)
       }

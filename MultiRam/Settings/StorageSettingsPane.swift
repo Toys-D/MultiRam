@@ -57,6 +57,7 @@ struct StorageSettingsPane: View {
 
   @Default(.size) private var size
   @Default(.sortBy) private var sortBy
+  @Default(.historyRetention) private var retention
 
   @State private var viewModel = ViewModel()
   @State private var storageSize = Storage.shared.size
@@ -110,6 +111,22 @@ struct StorageSettingsPane: View {
             Text(settingsLabel("SortBy", table: "StorageSettings"))
           }
           .help(Text("SortByTooltip", tableName: "StorageSettings"))
+        }
+
+        Section {
+          Picker(selection: $retention) {
+            ForEach(HistoryRetention.allCases) { retention in
+              Text(retention.title).tag(retention)
+            }
+          } label: {
+            Text("keep_history")
+          }
+          .onChange(of: retention) {
+            AppState.shared.history.removeExpired()
+          }
+        } footer: {
+          Text("keep_footer")
+            .settingsFootnote()
         }
       }
       .formStyle(.grouped)

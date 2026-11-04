@@ -141,6 +141,15 @@ struct KeyHandlingView<Content: View>: View {
         case .close:
           appState.popup.close()
           return .handled
+        case .togglePreview:
+          // Space types into a non-empty search; Command-Y previews either way.
+          let commandY = NSApp.currentEvent?.modifierFlags.contains(.command) == true
+          guard commandY || searchQuery.isEmpty,
+                let item = appState.navigator.leadHistoryItem else {
+            return .ignored
+          }
+          appState.popup.toggleDetail(for: item)
+          return .handled
         default:
           ()
         }

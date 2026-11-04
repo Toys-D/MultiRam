@@ -27,11 +27,21 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
   var pinnedItems: [HistoryItemDecorator] { items.filter(\.isPinned) }
   var unpinnedItems: [HistoryItemDecorator] { items.filter(\.isUnpinned) }
 
+  // Shows only text, images or files; the popup resets it to all when it closes.
+  var filter: HistoryFilter = .all {
+    didSet {
+      guard filter != oldValue else { return }
+      refreshItems()
+      AppState.shared.navigator.select(item: unpinnedItems.first ?? pinnedItems.first)
+      AppState.shared.popup.needsResize = true
+    }
+  }
+
   var searchQuery: String = "" {
     didSet {
       guard searchQuery != oldValue else { return }
       throttler.throttle { [self] in
-        updateItems(search.search(string: searchQuery, within: all))
+        refreshItems()
 
         if searchQuery.isEmpty {
           AppState.shared.navigator.select(item: unpinnedItems.first)
@@ -120,7 +130,8 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
     items = all
 
     limitHistorySize(to: max(1, Defaults[.size]))
-    updateItems(search.search(string: searchQuery, within: all))
+    removeExpired()
+    refreshItems()
     // Ensure that panel size is proper *after* loading all items.
     Task {
       AppState.shared.popup.needsResize = true
@@ -142,7 +153,19 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
     guard !excess.isEmpty else { return }
     guard persist({ excess.forEach { context.delete($0.item) } }) else { return }
     excess.forEach { removeFromMemory($0) }
-    updateItems(search.search(string: searchQuery, within: all))
+    refreshItems()
+  }
+
+  // Deletes unpinned items last copied before the retention period.
+  @MainActor
+  func removeExpired(retention: HistoryRetention = Defaults[.historyRetention], now: Date = .now) {
+    guard let cutoff = retention.cutoff(now: now) else { return }
+    let expired = all.filter { $0.isUnpinned && !$0.item.isDeleted && $0.item.lastCopiedAt < cutoff }
+    guard !expired.isEmpty else { return }
+    guard persist({ expired.forEach { context.delete($0.item) } }) else { return }
+    expired.forEach { removeFromMemory($0) }
+    refreshItems()
+    AppState.shared.popup.needsResize = true
   }
 
   @MainActor
@@ -202,7 +225,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
       all = Defaults[.pinTo] == .bottom ? unpinnedDecorators + pinned : pinned + unpinnedDecorators
       sessionLog.removeValues { $0 == savedItem }
       sessionLog[Clipboard.shared.changeCount] = savedItem
-      updateItems(search.search(string: searchQuery, within: all))
+      refreshItems()
       AppState.shared.popup.needsResize = true
       if existing == nil {
         Notifier.notify(body: savedItem.title, sound: .write)
@@ -263,7 +286,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
     removed.forEach { removeFromMemory($0) }
     onClear?()
     interruptPasteStack()
-    items = all
+    items = all.filter { filter.includes($0.kind) }
     searchQuery = ""
     AppState.shared.navigator.select(item: items.first)
     Clipboard.shared.clear()
@@ -334,6 +357,33 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
       case .unknown:
         return
       }
+    }
+
+    Task {
+      searchQuery = ""
+    }
+  }
+
+  // Text of the chosen items in the order they were chosen, one per line; images and files are skipped.
+  static func mergedText(of items: [HistoryItemDecorator]) -> String? {
+    let texts = items
+      .filter { $0.kind == .text && !$0.item.isDeleted }
+      .map(\.item.previewableText)
+      .filter { !$0.isEmpty }
+    return texts.isEmpty ? nil : texts.joined(separator: "\n")
+  }
+
+  @MainActor
+  func pasteMerged(_ items: [HistoryItemDecorator]) {
+    guard let text = Self.mergedText(of: items) else { return }
+    let modifierFlags = currentModifierFlags()
+    let action = modifierFlags.isEmpty ? nil : HistoryItemAction(modifierFlags)
+    guard action != .unknown else { return }
+
+    AppState.shared.popup.close()
+    Clipboard.shared.copy(text)
+    if action == .paste || action == .pasteWithoutFormatting || (action == nil && Defaults[.pasteByDefault]) {
+      Clipboard.shared.paste()
     }
 
     Task {
@@ -462,6 +512,11 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
     }
 
     return nil
+  }
+
+  private func refreshItems() {
+    let candidates = filter == .all ? all : all.filter { filter.includes($0.kind) }
+    updateItems(search.search(string: searchQuery, within: candidates))
   }
 
   private func updateItems(_ newItems: [Search.SearchResult]) {

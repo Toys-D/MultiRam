@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   private var statusItemVisibilityObserver: NSKeyValueObservation?
+  private var retentionTimer: Timer?
 
   func applicationWillFinishLaunching(_ notification: Notification) { // swiftlint:disable:this function_body_length
     // After a relaunch, let the previous instance release the hotkeys and the clipboard first.
@@ -116,6 +117,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     OpenWithController.shared.purgeOldCopies()
+    startRemovingExpiredItems()
+  }
+
+  // Expired items also go away while MultiRam keeps running for days.
+  private func startRemovingExpiredItems() {
+    guard !CommandLine.arguments.contains("unit-testing"),
+          ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else { return }
+    let timer = Timer(timeInterval: 60 * 60, repeats: true) { _ in
+      MainActor.assumeIsolated {
+        AppState.shared.history.removeExpired()
+      }
+    }
+    timer.tolerance = 5 * 60
+    RunLoop.main.add(timer, forMode: .common)
+    retentionTimer = timer
   }
 
   func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

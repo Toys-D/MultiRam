@@ -18,6 +18,8 @@ extension Defaults.Keys {
     "enabledPasteboardTypes", default: Set(StorageType.all.types)
   )
   static let highlightMatch = Key<HighlightMatch>("highlightMatch", default: .bold)
+  static let highlightPinned = Key<Bool>("highlightPinned", default: true)
+  static let historyRetention = Key<HistoryRetention>("historyRetention", default: .forever)
   static let ignoreAllAppsExceptListed = Key<Bool>("ignoreAllAppsExceptListed", default: false)
   static let ignoreEvents = Key<Bool>("ignoreEvents", default: false)
   static let ignoreOnlyNextEvent = Key<Bool>("ignoreOnlyNextEvent", default: false)
@@ -42,6 +44,8 @@ extension Defaults.Keys {
   static let openWithRecentApps = Key<[String]>("openWithRecentApps", default: [])
   static let pasteByDefault = Key<Bool>("pasteByDefault", default: true)
   static let pinTo = Key<PinsPosition>("pinTo", default: .top)
+  // Tint of pinned rows, the teal of the logo by default.
+  static let pinnedHighlightColor = Key<String>("pinnedHighlightColor", default: "#14B8D1")
   static let popupPosition = Key<PopupPosition>("popupPosition", default: .cursor)
   static let popupScreen = Key<Int>("popupScreen", default: 0)
   static let removeFormattingByDefault = Key<Bool>("removeFormattingByDefault", default: false)

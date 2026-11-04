@@ -19,7 +19,11 @@ MultiRam History is a lightweight clipboard history manager for macOS. It keeps 
 - Pick an item to paste it into the app you were working in.
 - The arrow at the right edge of a row opens the whole item in a side panel: the full text, or the image at its natural size.
 - Under an image in the side panel, **Open in…** buttons list the image editors and viewers found on your Mac (Preview, Photoshop, Illustrator and others). The app receives a read-only copy with the original bytes.
-- Search the history and pin items with the **PIN** button in the row.
+- Search the history and pin items with the **PIN** button in the row. Pinned rows get a light tint; the color is chosen in Settings.
+- Filters above the list show only **Text**, **Images** or **Files**.
+- **Space** (with an empty search) or **⌘Y** previews the selected item in the side panel.
+- **Shift+↑/↓** or **⌘-click** selects several items; **Return** pastes them as one block, one per line.
+- Items older than a chosen period (a day up to a year) are deleted automatically; pinned items stay.
 - Text wraps to four lines; longer items end with an ellipsis.
 - Settings, About and Quit are in the menu bar icon menu. Settings have a sidebar with search: General, Shortcuts, History Window, Menu Bar, Storage, Pins, Exclusions, Privacy and About. General shows whether automatic pasting is allowed.
 - The window stays on screen, also when it opens near the bottom edge.
@@ -97,7 +101,11 @@ MultiRam History — лёгкий менеджер истории буфера �
 - Выбранная запись вставляется в программу, в которой вы работали.
 - Стрелка у правого края строки открывает запись целиком в боковой панели: полный текст или картинку в натуральную величину.
 - Под картинкой в боковой панели — кнопки **«Открыть в…»** для графических редакторов и просмотрщиков, найденных на Mac (Просмотр, Photoshop, Illustrator и другие). Программе передаётся копия с исходными байтами, доступная только для чтения.
-- Поиск по истории и закрепление записей кнопкой **PIN** прямо в строке.
+- Поиск по истории и закрепление записей кнопкой **PIN** прямо в строке. Закреплённые строки слегка подкрашены, цвет выбирается в настройках.
+- Фильтры над списком показывают только **Текст**, **Картинки** или **Файлы**.
+- **Пробел** (когда поле поиска пустое) или **⌘Y** — предпросмотр выбранной записи в боковой панели.
+- **Shift+↑/↓** или **⌘+щелчок** выделяют несколько записей; **Return** вставит их одним блоком, каждую с новой строки.
+- Записи старше выбранного срока (от дня до года) удаляются автоматически; закреплённые остаются.
 - Текст переносится до четырёх строк; длинные записи заканчиваются многоточием.
 - Настройки, «О программе» и выход — в меню значка в строке меню. В настройках слева поиск и разделы: Основные, Клавиши, Окно истории, Строка меню, Хранение, Прикреплённые, Исключения, Конфиденциальность и О программе. В «Основных» видно, разрешена ли автоматическая вставка.
 - Окно остаётся в пределах экрана, в том числе при открытии у нижнего края.
