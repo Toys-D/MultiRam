@@ -125,7 +125,6 @@ def main():
     for name, files in {
         'Defaults': ['license'], 'KeyboardShortcuts': ['license'],
         'LaunchAtLogin-Modern': ['license'], 'Sauce': ['LICENSE'],
-        'Settings': ['license'],
         'SwiftHEXColors': ['LICENSE'], 'fuse-swift': ['LICENSE'],
         'swift-log': ['LICENSE.txt', 'NOTICE.txt'],
     }.items():

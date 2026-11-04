@@ -2,7 +2,6 @@ import SwiftUI
 import Defaults
 import KeyboardShortcuts
 import LaunchAtLogin
-import Settings
 
 struct GeneralSettingsPane: View {
   private let notificationsURL = URL(
@@ -16,6 +15,148 @@ struct GeneralSettingsPane: View {
   @State private var pasteWithoutFormatting = HistoryItemAction.pasteWithoutFormatting.modifierFlags.description
 
   @State private var updater = SoftwareUpdater()
+
+  var body: some View {
+    SettingsPage(title: SettingsSection.general.title) {
+      Form {
+        Section {
+          PasteAccessRow()
+        }
+
+        Section {
+          LaunchAtLogin.Toggle {
+            Text("LaunchAtLogin", tableName: "GeneralSettings")
+          }
+          if updater.isAvailable {
+            Toggle(isOn: $updater.automaticallyChecksForUpdates) {
+              Text("CheckForUpdates", tableName: "GeneralSettings")
+            }
+            Button(
+              action: { updater.checkForUpdates() },
+              label: { Text("CheckNow", tableName: "GeneralSettings") }
+            )
+          }
+        }
+
+        Section {
+          Defaults.Toggle(key: .pasteByDefault) {
+            Text("PasteAutomatically", tableName: "GeneralSettings")
+          }
+          .onChange(refreshModifiers)
+
+          Defaults.Toggle(key: .removeFormattingByDefault) {
+            Text("PasteWithoutFormatting", tableName: "GeneralSettings")
+          }
+          .onChange(refreshModifiers)
+        } header: {
+          Text(settingsLabel("Behavior", table: "GeneralSettings"))
+        } footer: {
+          Text(String(
+            format: NSLocalizedString("Modifiers", tableName: "GeneralSettings", comment: ""),
+            copyModifier, pasteModifier, pasteWithoutFormatting
+          ))
+          .settingsFootnote()
+        }
+
+        Section {
+          Picker(selection: $searchMode) {
+            ForEach(Search.Mode.allCases) { mode in
+              Text(mode.description)
+            }
+          } label: {
+            Text(settingsLabel("Search", table: "GeneralSettings"))
+          }
+
+          if let notificationsURL {
+            LabeledContent {
+              Link(destination: notificationsURL) {
+                Image(systemName: "arrow.up.forward.app")
+              }
+            } label: {
+              Text(settingsLabel("NotificationsAndSounds", table: "GeneralSettings"))
+            }
+          }
+        }
+      }
+      .formStyle(.grouped)
+    }
+  }
+
+  private func refreshModifiers(_ sender: Sendable) {
+    copyModifier = HistoryItemAction.copy.modifierFlags.description
+    pasteModifier = HistoryItemAction.paste.modifierFlags.description
+    pasteWithoutFormatting = HistoryItemAction.pasteWithoutFormatting.modifierFlags.description
+  }
+}
+
+// Shows whether MultiRam may paste for the user and offers the one action that fixes it.
+struct PasteAccessRow: View {
+  @State private var access = Accessibility.currentAccess()
+  private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+  var body: some View {
+    LabeledContent {
+      HStack(spacing: 10) {
+        Label {
+          Text(statusText)
+        } icon: {
+          Circle()
+            .fill(statusColor)
+            .frame(width: 8, height: 8)
+        }
+        .foregroundStyle(access == .granted ? .primary : .secondary)
+
+        switch access {
+        case .granted:
+          EmptyView()
+        case .needsPermission:
+          Button(NSLocalizedString("paste_access_allow", comment: "")) {
+            Accessibility.requestPermission()
+          }
+        case .needsRelaunch:
+          Button(NSLocalizedString("paste_access_restart", comment: "")) {
+            AppRelauncher.relaunch()
+          }
+        }
+      }
+    } label: {
+      Text("paste_access_title")
+      if let hint {
+        Text(hint)
+      }
+    }
+    .onReceive(timer) { _ in
+      access = Accessibility.currentAccess()
+    }
+    .accessibilityIdentifier("paste-access-status")
+  }
+
+  private var statusText: String {
+    switch access {
+    case .granted: return NSLocalizedString("paste_access_granted", comment: "")
+    case .needsPermission: return NSLocalizedString("paste_access_missing", comment: "")
+    case .needsRelaunch: return NSLocalizedString("paste_access_relaunch", comment: "")
+    }
+  }
+
+  private var statusColor: Color {
+    switch access {
+    case .granted: return .green
+    case .needsPermission: return .red
+    case .needsRelaunch: return .orange
+    }
+  }
+
+  private var hint: String? {
+    switch access {
+    case .granted: return nil
+    case .needsPermission: return Accessibility.localized("paste_access_hint_missing")
+    case .needsRelaunch: return NSLocalizedString("paste_access_hint_relaunch", comment: "")
+    }
+  }
+}
+
+struct ShortcutsSettingsPane: View {
   @State private var popupShortcut = KeyboardShortcuts.getShortcut(for: .popup)
   @State private var fallbackShortcut = KeyboardShortcuts.getShortcut(for: .popupFallback)
 
@@ -24,111 +165,57 @@ struct GeneralSettingsPane: View {
   }
 
   var body: some View {
-    Settings.Container(contentWidth: 450) {
-      Settings.Section(title: "", bottomDivider: true) {
-        LaunchAtLogin.Toggle {
-          Text("LaunchAtLogin", tableName: "GeneralSettings")
-        }
-        if updater.isAvailable {
-          Toggle(isOn: $updater.automaticallyChecksForUpdates) {
-            Text("CheckForUpdates", tableName: "GeneralSettings")
+    SettingsPage(title: SettingsSection.shortcuts.title) {
+      Form {
+        Section {
+          LabeledContent {
+            KeyboardShortcuts.Recorder(for: .popup, onChange: { newShortcut in
+              refreshShortcuts()
+              if newShortcut == nil {
+                // No shortcut is recorded. Remove keys monitor
+                AppState.shared.popup.deinitEventsMonitor()
+              } else {
+                // User is using shortcut. Ensure keys monitor is initialized
+                AppState.shared.popup.initEventsMonitor()
+              }
+            })
+            .help(Text("OpenTooltip", tableName: "GeneralSettings"))
+          } label: {
+            Text(settingsLabel("Open", table: "GeneralSettings"))
+            if HotkeySecurity.isBlockedBySecureInput(popupShortcut) {
+              Text(fallbackWorksInPasswordFields ? "OptionOnlyWarning" : "OptionOnlyWarningNoFallback",
+                   tableName: "GeneralSettings")
+            }
           }
-          Button(
-            action: { updater.checkForUpdates() },
-            label: { Text("CheckNow", tableName: "GeneralSettings") }
-          )
-        }
-      }
 
-      Settings.Section(label: { Text("Open", tableName: "GeneralSettings") }) {
-        KeyboardShortcuts.Recorder(for: .popup, onChange: { newShortcut in
-          refreshShortcuts()
-          if newShortcut == nil {
-            // No shortcut is recorded. Remove keys monitor
-            AppState.shared.popup.deinitEventsMonitor()
-          } else {
-            // User is using shortcut. Ensure keys monitor is initialized
-            AppState.shared.popup.initEventsMonitor()
-          }
-        })
-          .help(Text("OpenTooltip", tableName: "GeneralSettings"))
-        if HotkeySecurity.isBlockedBySecureInput(popupShortcut) {
-          Text(fallbackWorksInPasswordFields ? "OptionOnlyWarning" : "OptionOnlyWarningNoFallback",
-               tableName: "GeneralSettings")
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(maxWidth: 280, alignment: .leading)
-            .foregroundStyle(.gray)
-            .controlSize(.small)
-        }
-      }
-
-      Settings.Section(label: { Text("OpenFallback", tableName: "GeneralSettings") }) {
-        KeyboardShortcuts.Recorder(for: .popupFallback, onChange: { _ in refreshShortcuts() })
-          .help(Text("OpenFallbackTooltip", tableName: "GeneralSettings"))
-        if HotkeySecurity.isBlockedBySecureInput(fallbackShortcut) {
-          Text("FallbackBlockedWarning", tableName: "GeneralSettings")
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(maxWidth: 280, alignment: .leading)
-            .foregroundStyle(.gray)
-            .controlSize(.small)
-        }
-      }
-
-      Settings.Section(label: { Text("Pin", tableName: "GeneralSettings") }) {
-        KeyboardShortcuts.Recorder(for: .pin)
-          .help(Text("PinTooltip", tableName: "GeneralSettings"))
-      }
-      Settings.Section(bottomDivider: true, label: { Text("Delete", tableName: "GeneralSettings") }
-      ) {
-        KeyboardShortcuts.Recorder(for: .delete)
-          .help(Text("DeleteTooltip", tableName: "GeneralSettings"))
-      }
-
-      Settings.Section(
-        bottomDivider: true,
-        label: { Text("Search", tableName: "GeneralSettings") }
-      ) {
-        Picker("", selection: $searchMode) {
-          ForEach(Search.Mode.allCases) { mode in
-            Text(mode.description)
+          LabeledContent {
+            KeyboardShortcuts.Recorder(for: .popupFallback, onChange: { _ in refreshShortcuts() })
+              .help(Text("OpenFallbackTooltip", tableName: "GeneralSettings"))
+          } label: {
+            Text(settingsLabel("OpenFallback", table: "GeneralSettings"))
+            if HotkeySecurity.isBlockedBySecureInput(fallbackShortcut) {
+              Text("FallbackBlockedWarning", tableName: "GeneralSettings")
+            }
           }
         }
-        .labelsHidden()
-        .frame(width: 180, alignment: .leading)
-      }
 
-      Settings.Section(
-        bottomDivider: true,
-        label: { Text("Behavior", tableName: "GeneralSettings") }
-      ) {
-        Defaults.Toggle(key: .pasteByDefault) {
-          Text("PasteAutomatically", tableName: "GeneralSettings")
-        }
-        .onChange(refreshModifiers)
-        .fixedSize()
+        Section {
+          LabeledContent {
+            KeyboardShortcuts.Recorder(for: .pin)
+              .help(Text("PinTooltip", tableName: "GeneralSettings"))
+          } label: {
+            Text(settingsLabel("Pin", table: "GeneralSettings"))
+          }
 
-        Defaults.Toggle(key: .removeFormattingByDefault) {
-          Text("PasteWithoutFormatting", tableName: "GeneralSettings")
-        }
-        .onChange(refreshModifiers)
-        .fixedSize()
-
-        Text(String(
-          format: NSLocalizedString("Modifiers", tableName: "GeneralSettings", comment: ""),
-          copyModifier, pasteModifier, pasteWithoutFormatting
-        ))
-        .fixedSize(horizontal: false, vertical: true)
-        .foregroundStyle(.gray)
-        .controlSize(.small)
-      }
-
-      Settings.Section(title: "") {
-        if let notificationsURL = notificationsURL {
-          Link(destination: notificationsURL, label: {
-            Text("NotificationsAndSounds", tableName: "GeneralSettings")
-          })
+          LabeledContent {
+            KeyboardShortcuts.Recorder(for: .delete)
+              .help(Text("DeleteTooltip", tableName: "GeneralSettings"))
+          } label: {
+            Text(settingsLabel("Delete", table: "GeneralSettings"))
+          }
         }
       }
+      .formStyle(.grouped)
     }
   }
 
@@ -137,12 +224,6 @@ struct GeneralSettingsPane: View {
     Popup.resolveShortcutConflict()
     popupShortcut = KeyboardShortcuts.getShortcut(for: .popup)
     fallbackShortcut = KeyboardShortcuts.getShortcut(for: .popupFallback)
-  }
-
-  private func refreshModifiers(_ sender: Sendable) {
-    copyModifier = HistoryItemAction.copy.modifierFlags.description
-    pasteModifier = HistoryItemAction.paste.modifierFlags.description
-    pasteWithoutFormatting = HistoryItemAction.pasteWithoutFormatting.modifierFlags.description
   }
 }
 

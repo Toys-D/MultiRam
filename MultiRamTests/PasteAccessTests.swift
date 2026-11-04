@@ -45,11 +45,47 @@ final class AccessibilityTextTests: XCTestCase {
   }
 
   func testAboutNamesTheDeveloper() {
-    let credits = About.creditsText
-    XCTAssertTrue(credits.hasPrefix("MultiRam History"))
-    for part in ["Dmitry Kohan", "Pixmap Labs", "pixmap1981@gmail.com", "github.com/Toys-D"] {
-      XCTAssertTrue(credits.contains(part), part)
+    XCTAssertEqual(About.appName, "MultiRam History")
+    XCTAssertEqual(About.developer, "Dmitry Kohan")
+    XCTAssertEqual(About.studio, "Pixmap Labs")
+    XCTAssertEqual(About.emailURL.absoluteString, "mailto:pixmap1981@gmail.com")
+    XCTAssertEqual(About.releasesURL.absoluteString, "https://github.com/Toys-D/MultiRam/releases")
+    XCTAssertFalse(About.version.contains("%@"), About.version)
+  }
+}
+
+final class SettingsWindowTests: XCTestCase {
+  func testLabelsDropTheColonOfTheOldLayout() {
+    XCTAssertEqual(settingsLabel("Size:"), "Size")
+    XCTAssertEqual(settingsLabel("Размер: "), "Размер")
+    XCTAssertEqual(settingsLabel("サイズ："), "サイズ")
+    XCTAssertEqual(settingsLabel("Show menu icon"), "Show menu icon")
+    XCTAssertEqual(settingsLabel("Notifications and sounds \u{1001C1}"), "Notifications and sounds")
+  }
+
+  func testEverySectionHasATitleAndAnIcon() {
+    for section in SettingsSection.allCases {
+      XCTAssertFalse(section.title.isEmpty, section.rawValue)
+      XCTAssertFalse(section.title.hasPrefix("settings_"), section.rawValue)
+      XCTAssertNotNil(NSImage(systemSymbolName: section.symbol, accessibilityDescription: nil), section.symbol)
     }
+  }
+
+  func testSearchFindsTheSectionThatHoldsASetting() {
+    let label = settingsLabel("SortBy", table: "StorageSettings")
+    let found = SettingsSection.allCases.filter { $0.matches(label) }
+    XCTAssertTrue(found.contains(.storage), "\(label) → \(found)")
+    XCTAssertEqual(SettingsSection.allCases.filter { $0.matches("") }, SettingsSection.allCases)
+    XCTAssertTrue(SettingsSection.allCases.filter { $0.matches("zzz-no-such-setting") }.isEmpty)
+  }
+
+  func testSearchMovesTheSelectionToAVisibleSection() {
+    let model = SettingsModel()
+    model.selection = .about
+    model.query = settingsLabel("SortBy", table: "StorageSettings")
+    XCTAssertTrue(model.visibleSections.contains(model.selection))
+    model.query = ""
+    XCTAssertEqual(model.visibleSections, SettingsSection.allCases)
   }
 }
 

@@ -49,6 +49,23 @@ struct Accessibility {
     return isTrusted && sawAccessibilityOff ? .needsRelaunch : .needsPermission
   }
 
+  // The current state without any alert, for the status row in Settings.
+  static func currentAccess() -> PasteAccess {
+    let trusted = isTrusted
+    if !trusted {
+      sawAccessibilityOff = true
+    }
+    return access(canPostEvents: canPaste, isTrusted: trusted, sawAccessibilityOff: sawAccessibilityOff)
+  }
+
+  @MainActor
+  static func requestPermission() {
+    openPermissionSettings()
+    if !isTrusted {
+      AccessibilityGrantWatcher.shared.start()
+    }
+  }
+
   @MainActor
   @discardableResult
   static func check() -> Bool {
@@ -85,11 +102,15 @@ struct Accessibility {
     alert.window.identifier = NSUserInterfaceItemIdentifier("paste-permission-required")
     NSApp.activate()
     if alert.runModal() == .alertFirstButtonReturn {
-      // Register an event-posting access request before opening the settings pane.
-      CGRequestPostEventAccess()
-      if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
-        NSWorkspace.shared.open(url)
-      }
+      openPermissionSettings()
+    }
+  }
+
+  private static func openPermissionSettings() {
+    // Register an event-posting access request before opening the settings pane.
+    CGRequestPostEventAccess()
+    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
+      NSWorkspace.shared.open(url)
     }
   }
 

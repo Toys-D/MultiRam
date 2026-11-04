@@ -1,6 +1,5 @@
 import SwiftUI
 import Defaults
-import Settings
 
 struct StorageSettingsPane: View {
   @Observable
@@ -70,55 +69,50 @@ struct StorageSettingsPane: View {
   }()
 
   var body: some View {
-    Settings.Container(contentWidth: 450) {
-      Settings.Section(
-        bottomDivider: true,
-        label: { Text("Save", tableName: "StorageSettings") }
-      ) {
-        Toggle(
-          isOn: $viewModel.saveFiles,
-          label: { Text("Files", tableName: "StorageSettings") }
-        )
-        Toggle(
-          isOn: $viewModel.saveImages,
-          label: { Text("Images", tableName: "StorageSettings") }
-        )
-        Toggle(
-          isOn: $viewModel.saveText,
-          label: { Text("Text", tableName: "StorageSettings") }
-        )
-        Text("SaveDescription", tableName: "StorageSettings")
-          .controlSize(.small)
-          .foregroundStyle(.gray)
-      }
+    SettingsPage(title: SettingsSection.storage.title) {
+      Form {
+        Section {
+          Toggle(isOn: $viewModel.saveFiles) { Text("Files", tableName: "StorageSettings") }
+          Toggle(isOn: $viewModel.saveImages) { Text("Images", tableName: "StorageSettings") }
+          Toggle(isOn: $viewModel.saveText) { Text("Text", tableName: "StorageSettings") }
+        } header: {
+          Text(settingsLabel("Save", table: "StorageSettings"))
+        } footer: {
+          Text("SaveDescription", tableName: "StorageSettings")
+            .settingsFootnote()
+        }
 
-      Settings.Section(label: { Text("Size", tableName: "StorageSettings") }) {
-        HStack {
-          TextField("", value: $size, formatter: sizeFormatter)
-            .frame(width: 80)
-            .help(Text("SizeTooltip", tableName: "StorageSettings"))
-          Stepper("", value: $size, in: 1...999)
-            .labelsHidden()
-          Text(storageSize)
-            .controlSize(.small)
-            .foregroundStyle(.gray)
-            .help(Text("CurrentSizeTooltip", tableName: "StorageSettings"))
-            .onAppear {
-              storageSize = Storage.shared.size
+        Section {
+          LabeledContent {
+            HStack {
+              Text(storageSize)
+                .foregroundStyle(.secondary)
+                .help(Text("CurrentSizeTooltip", tableName: "StorageSettings"))
+                .onAppear {
+                  storageSize = Storage.shared.size
+                }
+              TextField("", value: $size, formatter: sizeFormatter)
+                .multilineTextAlignment(.trailing)
+                .frame(width: 60)
+                .help(Text("SizeTooltip", tableName: "StorageSettings"))
+              Stepper("", value: $size, in: 1...999)
+                .labelsHidden()
             }
-        }
-      }
-
-      Settings.Section(label: { Text("SortBy", tableName: "StorageSettings") }) {
-        Picker("", selection: $sortBy) {
-          ForEach(Sorter.By.allCases) { mode in
-            Text(mode.description)
+          } label: {
+            Text(settingsLabel("Size", table: "StorageSettings"))
           }
+
+          Picker(selection: $sortBy) {
+            ForEach(Sorter.By.allCases) { mode in
+              Text(mode.description)
+            }
+          } label: {
+            Text(settingsLabel("SortBy", table: "StorageSettings"))
+          }
+          .help(Text("SortByTooltip", tableName: "StorageSettings"))
         }
-        .labelsHidden()
-        .frame(width: 160, alignment: .leading)
-        .help(Text("SortByTooltip", tableName: "StorageSettings"))
       }
+      .formStyle(.grouped)
     }
   }
 }

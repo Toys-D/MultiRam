@@ -1,20 +1,16 @@
 import AppKit
 import SwiftUI
 import Defaults
-import Settings
 
-struct AppearanceSettingsPane: View {
+struct HistoryWindowSettingsPane: View {
   @Default(.popupPosition) private var popupAt
   @Default(.popupScreen) private var popupScreen
   @Default(.pinTo) private var pinTo
   @Default(.imageMaxHeight) private var imageHeight
   @Default(.highlightMatch) private var highlightMatch
-  @Default(.menuIcon) private var menuIcon
-  @Default(.showInStatusBar) private var showInStatusBar
   @Default(.showSearch) private var showSearch
   @Default(.searchVisibility) private var searchVisibility
   @Default(.windowPosition) private var windowPosition
-  @Default(.showApplicationIcons) private var showApplicationIcons
 
   @State private var screens = NSScreen.screens
 
@@ -25,133 +21,105 @@ struct AppearanceSettingsPane: View {
     return formatter
   }()
 
-  private let numberOfItemsFormatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-    formatter.minimum = 0
-    formatter.maximum = 100
-    return formatter
-  }()
-
-  private let titleLengthFormatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-    formatter.minimum = 30
-    formatter.maximum = 200
-    return formatter
-  }()
-
   var body: some View {
-    Settings.Container(contentWidth: 650) {
-      Settings.Section(label: { Text("PopupAt", tableName: "AppearanceSettings") }) {
-        HStack {
-          Picker("", selection: $popupAt) {
-            ForEach(PopupPosition.allCases) { position in
-              if position == .center || position == .lastPosition, screens.count > 1 {
-                screenPicker(for: position)
-              } else {
-                Text(position.description)
+    SettingsPage(title: SettingsSection.historyWindow.title) {
+      Form {
+        Section {
+          LabeledContent {
+            HStack {
+              if popupAt == .lastPosition {
+                Button {
+                  _windowPosition.reset()
+                } label: {
+                  Image(systemName: "arrow.uturn.backward.circle.fill")
+                    .imageScale(.large)
+                }
+                .buttonStyle(.borderless)
+                .help(Text("PopupAtLastLocationReset", tableName: "AppearanceSettings"))
+                .disabled(windowPosition == _windowPosition.defaultValue)
               }
+
+              Picker("", selection: $popupAt) {
+                ForEach(PopupPosition.allCases) { position in
+                  if position == .center || position == .lastPosition, screens.count > 1 {
+                    screenPicker(for: position)
+                  } else {
+                    Text(position.description)
+                  }
+                }
+              }
+              .labelsHidden()
+              .fixedSize()
+              .help(Text("PopupAtTooltip", tableName: "AppearanceSettings"))
             }
+          } label: {
+            Text(settingsLabel("PopupAt", table: "AppearanceSettings"))
           }
-          .labelsHidden()
-          .frame(width: 141, alignment: .leading)
-          .help(Text("PopupAtTooltip", tableName: "AppearanceSettings"))
 
-          if popupAt == .lastPosition {
-            Button {
-              _windowPosition.reset()
-            } label: {
-              Image(systemName: "arrow.uturn.backward.circle.fill")
-                .imageScale(.large)
+          Picker(selection: $pinTo) {
+            ForEach(PinsPosition.allCases) { position in
+              Text(position.description)
             }
-            .buttonStyle(.borderless)
-            .help(Text("PopupAtLastLocationReset", tableName: "AppearanceSettings"))
-            .disabled(windowPosition == _windowPosition.defaultValue)
+          } label: {
+            Text(settingsLabel("PinTo", table: "AppearanceSettings"))
           }
-        }
-      }
+          .help(Text("PinToTooltip", tableName: "AppearanceSettings"))
 
-      Settings.Section(label: { Text("PinTo", tableName: "AppearanceSettings") }) {
-        Picker("", selection: $pinTo) {
-          ForEach(PinsPosition.allCases) { position in
-            Text(position.description)
-          }
-        }
-        .labelsHidden()
-        .frame(width: 141, alignment: .leading)
-        .help(Text("PinToTooltip", tableName: "AppearanceSettings"))
-      }
-
-      Settings.Section(label: { Text("ImageHeight", tableName: "AppearanceSettings") }) {
-        HStack {
-          TextField("", value: $imageHeight, formatter: imageHeightFormatter)
-            .frame(width: 120)
-            .help(Text("ImageHeightTooltip", tableName: "AppearanceSettings"))
-          Stepper("", value: $imageHeight, in: 1...200)
-            .labelsHidden()
-        }
-      }
-
-      Settings.Section(
-        bottomDivider: true,
-        label: { Text("HighlightMatches", tableName: "AppearanceSettings") }
-      ) {
-        Picker("", selection: $highlightMatch) {
-          ForEach(HighlightMatch.allCases) { match in
-            Text(match.description)
-          }
-        }
-        .labelsHidden()
-        .frame(width: 141, alignment: .leading)
-        .help(Text("HighlightMatchesTooltip", tableName: "AppearanceSettings"))
-      }
-
-      Settings.Section(title: "") {
-        Defaults.Toggle(key: .showSpecialSymbols) {
-          Text("ShowSpecialSymbols", tableName: "AppearanceSettings")
-        }
-        .help(Text("ShowSpecialSymbolsTooltip", tableName: "AppearanceSettings"))
-
-        HStack {
-          Defaults.Toggle(key: .showInStatusBar) {
-            Text("ShowMenuIcon", tableName: "AppearanceSettings")
-          }
-
-          Picker("", selection: $menuIcon) {
-            ForEach(MenuIcon.allCases) { icon in
-              Image(nsImage: icon.image)
+          LabeledContent {
+            HStack {
+              TextField("", value: $imageHeight, formatter: imageHeightFormatter)
+                .multilineTextAlignment(.trailing)
+                .frame(width: 60)
+                .help(Text("ImageHeightTooltip", tableName: "AppearanceSettings"))
+              Stepper("", value: $imageHeight, in: 1...200)
+                .labelsHidden()
             }
+          } label: {
+            Text(settingsLabel("ImageHeight", table: "AppearanceSettings"))
           }
-          .labelsHidden()
-          .scaledToFit()
-          .disabled(!showInStatusBar)
-          .controlSize(.small)
+
+          Picker(selection: $highlightMatch) {
+            ForEach(HighlightMatch.allCases) { match in
+              Text(match.description)
+            }
+          } label: {
+            Text(settingsLabel("HighlightMatches", table: "AppearanceSettings"))
+          }
+          .help(Text("HighlightMatchesTooltip", tableName: "AppearanceSettings"))
         }
 
-        Defaults.Toggle(key: .showRecentCopyInMenuBar) {
-          Text("ShowRecentCopyInMenuBar", tableName: "AppearanceSettings")
-        }
-        HStack {
-          Defaults.Toggle(key: .showSearch) {
+        Section {
+          LabeledContent {
+            HStack {
+              Picker("", selection: $searchVisibility) {
+                ForEach(SearchVisibility.allCases) { type in
+                  Text(type.description)
+                }
+              }
+              .labelsHidden()
+              .fixedSize()
+              .disabled(!showSearch)
+
+              Toggle("", isOn: $showSearch)
+                .labelsHidden()
+            }
+          } label: {
             Text("ShowSearchField", tableName: "AppearanceSettings")
           }
 
-          Picker("", selection: $searchVisibility) {
-            ForEach(SearchVisibility.allCases) { type in
-              Text(type.description)
-            }
+          Defaults.Toggle(key: .showTitle) {
+            Text("ShowTitleBeforeSearchField", tableName: "AppearanceSettings")
           }
-          .labelsHidden()
-          .scaledToFit()
-          .disabled(!showSearch)
-          .controlSize(.small)
-        }
-        Defaults.Toggle(key: .showTitle) {
-          Text("ShowTitleBeforeSearchField", tableName: "AppearanceSettings")
-        }
-        Defaults.Toggle(key: .showApplicationIcons) {
-          Text("ShowApplicationIcons", tableName: "AppearanceSettings")
+          Defaults.Toggle(key: .showApplicationIcons) {
+            Text("ShowApplicationIcons", tableName: "AppearanceSettings")
+          }
+          Defaults.Toggle(key: .showSpecialSymbols) {
+            Text("ShowSpecialSymbols", tableName: "AppearanceSettings")
+          }
+          .help(Text("ShowSpecialSymbolsTooltip", tableName: "AppearanceSettings"))
         }
       }
+      .formStyle(.grouped)
     }
     .onReceive(NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)) { _ in
       screens = NSScreen.screens
@@ -194,7 +162,43 @@ struct AppearanceSettingsPane: View {
   }
 }
 
+struct MenuBarSettingsPane: View {
+  @Default(.menuIcon) private var menuIcon
+  @Default(.showInStatusBar) private var showInStatusBar
+
+  var body: some View {
+    SettingsPage(title: SettingsSection.menuBar.title) {
+      Form {
+        Section {
+          LabeledContent {
+            HStack {
+              Picker("", selection: $menuIcon) {
+                ForEach(MenuIcon.allCases) { icon in
+                  Image(nsImage: icon.image)
+                }
+              }
+              .labelsHidden()
+              .fixedSize()
+              .disabled(!showInStatusBar)
+
+              Toggle("", isOn: $showInStatusBar)
+                .labelsHidden()
+            }
+          } label: {
+            Text("ShowMenuIcon", tableName: "AppearanceSettings")
+          }
+
+          Defaults.Toggle(key: .showRecentCopyInMenuBar) {
+            Text("ShowRecentCopyInMenuBar", tableName: "AppearanceSettings")
+          }
+        }
+      }
+      .formStyle(.grouped)
+    }
+  }
+}
+
 #Preview {
-  AppearanceSettingsPane()
+  HistoryWindowSettingsPane()
     .environment(\.locale, .init(identifier: "en"))
 }

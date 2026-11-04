@@ -122,42 +122,50 @@ struct PinsSettingsPane: View {
   @State private var selection: PersistentIdentifier?
 
   var body: some View {
-    VStack(alignment: .leading) {
-      Table(items, selection: $selection) {
-        TableColumn(Text("Key", tableName: "PinsSettings")) { item in
-          PinPickerView(item: item, availablePins: availablePins)
-            .onChange(of: item.pin) {
-              availablePins = HistoryItem.availablePins
-            }
+    SettingsPage(title: SettingsSection.pins.title) {
+      VStack(alignment: .leading, spacing: 10) {
+        SettingsPanel {
+          table
+            .scrollContentBackground(.hidden)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .width(60)
-
-        TableColumn(Text("Alias", tableName: "PinsSettings")) { item in
-          PinTitleView(item: item)
-        }
-
-        TableColumn(Text("Content", tableName: "PinsSettings")) { item in
-          PinValueView(item: item)
-        }
+        Text("PinCustomizationDescription", tableName: "PinsSettings")
+          .settingsFootnote()
       }
-      .onAppear {
-        availablePins = HistoryItem.availablePins
-      }
-      .onDeleteCommand {
-        guard let selection,
-              let item = appState.history.items.first(where: { $0.item.id == selection }) else {
-          return
-        }
-
-        appState.history.delete(item)
-      }
-
-      Text("PinCustomizationDescription", tableName: "PinsSettings")
-        .foregroundStyle(.gray)
-        .controlSize(.small)
+      .padding(.horizontal, 28)
+      .padding(.vertical, 18)
     }
-    .frame(minWidth: 500, minHeight: 400)
-    .padding()
+  }
+
+  private var table: some View {
+    Table(items, selection: $selection) {
+      TableColumn(Text("Key", tableName: "PinsSettings")) { item in
+        PinPickerView(item: item, availablePins: availablePins)
+          .onChange(of: item.pin) {
+            availablePins = HistoryItem.availablePins
+          }
+      }
+      .width(60)
+
+      TableColumn(Text("Alias", tableName: "PinsSettings")) { item in
+        PinTitleView(item: item)
+      }
+
+      TableColumn(Text("Content", tableName: "PinsSettings")) { item in
+        PinValueView(item: item)
+      }
+    }
+    .onAppear {
+      availablePins = HistoryItem.availablePins
+    }
+    .onDeleteCommand {
+      guard let selection,
+            let item = appState.history.items.first(where: { $0.item.id == selection }) else {
+        return
+      }
+
+      appState.history.delete(item)
+    }
   }
 }
 

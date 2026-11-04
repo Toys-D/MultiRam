@@ -5,7 +5,6 @@ import Foundation
 import Logging
 import Observation
 import Sauce
-import Settings
 import SwiftData
 
 @Observable
