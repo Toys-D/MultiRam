@@ -1,6 +1,39 @@
-The MIT License (MIT)
+MultiRam History — License
 
-Copyright (c) 2026 Dmitry Kohan, Pixmap Labs
+Copyright © 2026 Dmitry Kohan · Toys-D · Pixmap Labs. All rights reserved.
+
+1. MultiRam History is free. You may download, install and use it on any number of Macs, at home and at work, at no charge.
+2. You may share the original, unmodified DMG free of charge, together with this license.
+3. You may not:
+   - sell, rent or lease MultiRam History, or include it in any product or bundle that is sold;
+   - modify MultiRam History, decompile, disassemble or otherwise reverse engineer it, or create derivative works from it;
+   - distribute modified copies, or remove or change the author's name and this license.
+4. The source code is published so that anyone can see what the app does. Publishing it grants no rights beyond those in this license.
+5. All rights not expressly granted here are reserved by the author.
+6. MultiRam History is provided "as is", without warranty of any kind. The author is not liable for any damage or loss arising from its use.
+7. MultiRam History contains code from third parties under their own licenses, listed below. This license does not limit the rights those licenses give to their code.
+
+
+MultiRam History — Лицензия
+
+© 2026 Dmitry Kohan · Toys-D · Pixmap Labs. Все права защищены.
+
+1. MultiRam History бесплатна. Её можно скачивать, устанавливать и использовать на любом количестве компьютеров Mac, дома и на работе, без оплаты.
+2. Оригинальный, неизменённый DMG можно бесплатно передавать другим вместе с этой лицензией.
+3. Нельзя:
+   - продавать MultiRam History, сдавать её в аренду или включать в продаваемые продукты и сборки;
+   - изменять MultiRam History, декомпилировать, дизассемблировать или иным способом восстанавливать её код, создавать на её основе производные работы;
+   - распространять изменённые копии, удалять или менять имя автора и эту лицензию.
+4. Исходный код опубликован, чтобы любой мог увидеть, что делает программа. Публикация не даёт прав сверх указанных в этой лицензии.
+5. Все права, прямо не предоставленные здесь, сохраняются за автором.
+6. MultiRam History предоставляется «как есть», без каких-либо гарантий. Автор не отвечает за ущерб или потери, связанные с её использованием.
+7. MultiRam History содержит код третьих сторон под их собственными лицензиями, они перечислены ниже. Эта лицензия не ограничивает права, которые дают их лицензии на их код.
+
+
+Third-party code / Код третьих сторон
+
+Parts of MultiRam History are based on Maccy (https://github.com/p0deje/Maccy), used under the MIT License:
+
 Copyright (c) 2025 Alex Rodionov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,3 +53,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+The licenses of the Swift packages MultiRam uses (Defaults, KeyboardShortcuts, LaunchAtLogin, Sauce, SwiftHEXColors, Fuse, swift-log) ship inside the app in ThirdPartyNotices.txt.

@@ -56,6 +56,12 @@
 "about_contact" = "Contact";
 "about_releases" = "Releases";
 "about_all_releases" = "All releases on GitHub";
+"about_license_value" = "Free — no modifying or selling";
+"support_title" = "MultiRam History is free";
+"support_text" = "I build MultiRam alone, in my spare time. If it is useful to you and you can, support it with any amount — I will be very grateful. I'm open to talk: write to me if you have ideas on how to make the app better.";
+"support_button" = "Support via PayPal";
+"support_thanks" = "Thank you to everyone who helps!";
+"support_note" = "Support is voluntary: nothing in the app depends on it.";
 "filter_all" = "All";
 "filter_text" = "Text";
 "filter_images" = "Images";

@@ -7,12 +7,15 @@ enum About {
   static let studio = "Pixmap Labs"
   static let email = "pixmap1981@gmail.com"
   static let repository = "Toys-D/MultiRam"
-  static let license = "MIT"
 
   static let repositoryURL = URL(string: "https://github.com/\(repository)")!
   static let licenseURL = URL(string: "https://github.com/\(repository)/blob/master/LICENSE")!
   static let releasesURL = URL(string: "https://github.com/\(repository)/releases")!
   static let emailURL = URL(string: "mailto:\(email)")!
+  static let paypalURL = URL(
+    string: "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pixmap1981%40gmail.com"
+      + "&item_name=MultiRam+History&currency_code=USD"
+  )!
 
   static var version: String {
     let info = Bundle.main.infoDictionary ?? [:]
@@ -60,7 +63,7 @@ struct AboutSettingsPane: View {
             Text("about_company")
           }
           LabeledContent {
-            Link(About.license, destination: About.licenseURL)
+            Link(NSLocalizedString("about_license_value", comment: ""), destination: About.licenseURL)
           } label: {
             Text("about_license")
           }
@@ -83,6 +86,30 @@ struct AboutSettingsPane: View {
           } label: {
             Text("about_releases")
           }
+        }
+
+        Section {
+          VStack(alignment: .leading, spacing: 10) {
+            Text("support_title")
+              .font(.headline)
+            Text("support_text")
+              .foregroundStyle(.secondary)
+              .fixedSize(horizontal: false, vertical: true)
+            Link(destination: About.paypalURL) {
+              Label("support_button", systemImage: "heart.fill")
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 6)
+                .foregroundStyle(SettingsTheme.selectedText)
+                .background(SettingsTheme.accent, in: RoundedRectangle(cornerRadius: 8))
+            }
+            .buttonStyle(.plain)
+            .accessibilityIdentifier("support-paypal")
+            Text("support_thanks")
+            Text("support_note")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          .padding(.vertical, 4)
         }
       }
       .formStyle(.grouped)
