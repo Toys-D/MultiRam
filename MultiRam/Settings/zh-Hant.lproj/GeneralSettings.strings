@@ -3,11 +3,11 @@
 "CheckForUpdates" = "自動檢查更新";
 "CheckNow" = "立即檢查";
 "Open" = "開啟：";
-"OpenTooltip" = "全局快捷键，用于打开应用程序。\n在按住修改器的同时重复按下主键将选择列表中的下一个项目。在此模式下，鬆開變量鍵將確認選擇並關閉彈出窗口。\n預設：%@C。";
+"OpenTooltip" = "全局快捷键，用于打开应用程序。\n在按住修改器的同时重复按下主键将选择列表中的下一个项目。在此模式下，鬆開變量鍵將確認選擇並關閉彈出窗口。\n預設：⌥V。";
 "Pin" = "釘選：";
-"PinTooltip" = "釘選歷史記錄項目的快捷鍵。\n預設：%@P。";
+"PinTooltip" = "釘選歷史記錄項目的快捷鍵。\n預設：⌥P。";
 "Delete" = "刪除：";
-"DeleteTooltip" = "刪除歷史記錄項目的快捷鍵。\n預設：%@⌫。";
+"DeleteTooltip" = "刪除歷史記錄項目的快捷鍵。\n預設：⌥⌫。";
 "Behavior" = "行為：";
 "PasteAutomatically" = "自動貼上";
 "PasteWithoutFormatting" = "純文字貼上";
@@ -19,8 +19,8 @@
 "Mixed" = "混合";
 "NotificationsAndSounds" = "通知和聲音 􀱁";
 
-"OpenFallback" = "Fallback:";
-"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
-"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
-"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
-"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";
+"OpenFallback" = "備用：";
+"OpenFallbackTooltip" = "用來打開歷史記錄的第二組快速鍵。在密碼欄位中也能使用，因為 macOS 會在該處封鎖只有 ⌥ 的快速鍵。\n預設值：⌃⌥V。";
+"OptionOnlyWarning" = "游標位於密碼欄位時，只有 ⌥ 的快速鍵無法使用。請在該處改用備用快速鍵。";
+"OptionOnlyWarningNoFallback" = "游標位於密碼欄位時，只有 ⌥ 的快速鍵無法使用。請在該處按一下 MultiRam 圖像，或設定含有 ⌃ 或 ⌘ 的備用快速鍵。";
+"FallbackBlockedWarning" = "此快速鍵同樣只有 ⌥，因此在密碼欄位中也無法使用。請加上 ⌃ 或 ⌘。";

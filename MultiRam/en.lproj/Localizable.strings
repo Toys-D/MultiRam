@@ -12,7 +12,7 @@
 "clear_all" = "Clear all";
 "about" = "About";
 "quit" = "Quit";
-"preferences" = "Preferences…";
+"preferences" = "Settings…";
 "preferences_advanced" = "Advanced";
 "preferences_pins" = "Pins";
 "copy_modifiers_config" = "• Select with %@ pressed to copy item.";

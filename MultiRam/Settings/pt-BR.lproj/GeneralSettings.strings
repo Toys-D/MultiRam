@@ -11,7 +11,7 @@
 "Behavior" = "Comportamento:";
 "PasteAutomatically" = "Colar automaticamente";
 "PasteWithoutFormatting" = "Colar sem formatação";
-"Modifiers" = "Personalize o comportamento ao selecionar o item:\n• Selecione com ⌘ pressionado para copiar o item.\n• Selecione com ⌥ pressionado para copiar e colar o item.\n• Selecionar com ⌥⇧ pressionado para copiar, limpar a formatação e colar o item.";
+"Modifiers" = "Personalize o comportamento ao selecionar o item:\n• Selecione com %@ pressionado para copiar o item.\n• Selecione com %@ pressionado para copiar e colar o item.\n• Selecione com %@ pressionado para copiar, limpar a formatação e colar o item.";
 "Search" = "Busca:";
 "Exact" = "Exata";
 "Fuzzy" = "Aproximada";
@@ -19,8 +19,8 @@
 "Mixed" = "Mista";
 "NotificationsAndSounds" = "Notificações e sons 􀱁";
 
-"OpenFallback" = "Fallback:";
-"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
-"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
-"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
-"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";
+"OpenFallback" = "Alternativo:";
+"OpenFallbackTooltip" = "Segundo atalho para abrir o histórico. Ele também funciona em campos de senha, onde o macOS bloqueia atalhos só com ⌥.\nPadrão: ⌃⌥V.";
+"OptionOnlyWarning" = "Atalhos só com ⌥ não funcionam enquanto o cursor está em um campo de senha. Nesses campos, use o atalho alternativo.";
+"OptionOnlyWarningNoFallback" = "Atalhos só com ⌥ não funcionam enquanto o cursor está em um campo de senha. Nesses campos, clique no ícone do MultiRam ou defina um atalho alternativo com ⌃ ou ⌘.";
+"FallbackBlockedWarning" = "Este atalho também usa só ⌥, então também não funcionará em campos de senha. Adicione ⌃ ou ⌘.";

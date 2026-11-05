@@ -191,12 +191,12 @@ class MultiRamUITests: XCTestCase {
   func testStatusMenuOpensPreferences() {
     app.statusItems.firstMatch.click()
     assertExists(app.menuItems["Show History"])
-    assertExists(app.menuItems["Preferences…"])
+    assertExists(app.menuItems["Settings…"])
     assertExists(app.menuItems["About"])
     assertExists(app.menuItems["Quit"])
     assertNotExists(items[copy1])
 
-    app.menuItems["Preferences…"].click()
+    app.menuItems["Settings…"].click()
     assertExists(app.windows.buttons["General"])
     assertNotExists(items[copy1])
   }
@@ -822,7 +822,7 @@ class MultiRamUITests: XCTestCase {
     assertExists(clearButton)
     XCTAssertLessThan(abs(clearButton.frame.midY - app.textFields.firstMatch.frame.midY), 20)
     assertNotExists(app.staticTexts["Clear"])
-    assertNotExists(app.staticTexts["Preferences…"])
+    assertNotExists(app.staticTexts["Settings…"])
     assertNotExists(app.staticTexts["About"])
     assertNotExists(app.staticTexts["Quit"])
   }

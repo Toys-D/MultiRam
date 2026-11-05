@@ -3,11 +3,11 @@
 "CheckForUpdates" = "Vérifier les mises à jour automatiquement";
 "CheckNow" = "Vérifier maintenant";
 "Open" = "Ouvrir :";
-"OpenTooltip" = "Touche de raccourci globale pour ouvrir l'application.\nUne pression répétée sur la touche principale tout en maintenant les modificateurs enfoncés permet de sélectionner l'élément suivant dans la liste. Dans ce mode, le relâchement des touches de modification confirmera la sélection et fermera la fenêtre contextuelle.\nPar défaut : %@C.";
+"OpenTooltip" = "Touche de raccourci globale pour ouvrir l'application.\nUne pression répétée sur la touche principale tout en maintenant les modificateurs enfoncés permet de sélectionner l'élément suivant dans la liste. Dans ce mode, le relâchement des touches de modification confirmera la sélection et fermera la fenêtre contextuelle.\nPar défaut : ⌥V.";
 "Pin" = "Épingler :";
-"PinTooltip" = "Touche de raccourci pour épingler un élément de l’historique.\nPar défaut : %@P.";
+"PinTooltip" = "Touche de raccourci pour épingler un élément de l’historique.\nPar défaut : ⌥P.";
 "Delete" = "Supprimer :";
-"DeleteTooltip" = "Touche de raccourci pour supprimer un élément de l’historique.\nPar défaut : %@⌫.";
+"DeleteTooltip" = "Touche de raccourci pour supprimer un élément de l’historique.\nPar défaut : ⌥⌫.";
 "Behavior" = "Comportement :";
 "PasteAutomatically" = "Coller automatiquement";
 "PasteWithoutFormatting" = "Coller sans formatage";
@@ -19,8 +19,8 @@
 "Mixed" = "Mixte";
 "NotificationsAndSounds" = "Notifications et sons 􀱁";
 
-"OpenFallback" = "Fallback:";
-"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
-"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
-"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
-"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";
+"OpenFallback" = "Secours :";
+"OpenFallbackTooltip" = "Second raccourci pour ouvrir l’historique. Il fonctionne aussi dans les champs de mot de passe, où macOS bloque les raccourcis utilisant uniquement ⌥.\nPar défaut : ⌃⌥V.";
+"OptionOnlyWarning" = "Les raccourcis utilisant uniquement ⌥ ne fonctionnent pas lorsque le curseur est dans un champ de mot de passe. Utilisez-y le raccourci de secours.";
+"OptionOnlyWarningNoFallback" = "Les raccourcis utilisant uniquement ⌥ ne fonctionnent pas lorsque le curseur est dans un champ de mot de passe. Cliquez alors sur l’icône MultiRam, ou définissez un raccourci de secours avec ⌃ ou ⌘.";
+"FallbackBlockedWarning" = "Ce raccourci n’utilise lui aussi que ⌥ : il ne fonctionnera donc pas non plus dans les champs de mot de passe. Ajoutez ⌃ ou ⌘.";

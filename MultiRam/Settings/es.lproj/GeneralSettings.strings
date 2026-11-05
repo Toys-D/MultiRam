@@ -19,8 +19,8 @@
 "Mixed" = "Mezclada";
 "NotificationsAndSounds" = "Notificaciones y sonidos 􀱁";
 
-"OpenFallback" = "Fallback:";
-"OpenFallbackTooltip" = "Second shortcut that opens the history. It also works in password fields, where macOS blocks shortcuts with only ⌥.\nDefault: ⌃⌥V.";
-"OptionOnlyWarning" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Use the fallback shortcut there.";
-"OptionOnlyWarningNoFallback" = "Shortcuts with only ⌥ don't work while the cursor is in a password field. Click the MultiRam icon there, or set a fallback shortcut with ⌃ or ⌘.";
-"FallbackBlockedWarning" = "This shortcut also has only ⌥, so it won't work in password fields either. Add ⌃ or ⌘.";
+"OpenFallback" = "Alternativo:";
+"OpenFallbackTooltip" = "Segundo atajo para abrir el historial. También funciona en los campos de contraseña, donde macOS bloquea los atajos que solo usan ⌥.\nPor omisión: ⌃⌥V.";
+"OptionOnlyWarning" = "Los atajos que solo usan ⌥ no funcionan mientras el cursor está en un campo de contraseña. Usa ahí el atajo alternativo.";
+"OptionOnlyWarningNoFallback" = "Los atajos que solo usan ⌥ no funcionan mientras el cursor está en un campo de contraseña. Haz clic ahí en el icono de MultiRam o define un atajo alternativo con ⌃ o ⌘.";
+"FallbackBlockedWarning" = "Este atajo también usa solo ⌥, así que tampoco funcionará en los campos de contraseña. Añade ⌃ o ⌘.";
