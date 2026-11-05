@@ -31,6 +31,24 @@ class SearchTests: XCTestCase {
     XCTAssertEqual(runs, ["latest"])
   }
 
+  // Every mode finds an item whatever the letter case, Cyrillic included.
+  @MainActor
+  func testSearchIgnoresLetterCaseInEveryMode() {
+    items = [
+      HistoryItemDecorator(historyItemWithTitle("Привет, Мир")),
+      HistoryItemDecorator(historyItemWithTitle("Hello WORLD"))
+    ]
+    for mode in Search.Mode.allCases {
+      Defaults[.searchMode] = mode
+      for (query, expected) in [("привет", 0), ("МИР", 0), ("hello", 1), ("world", 1)] {
+        let found = search(query).map(\.object)
+        XCTAssertTrue(found.contains(items[expected]), "\(mode): \(query) → \(found.map(\.title))")
+      }
+    }
+    Defaults[.searchMode] = .regexp
+    XCTAssertTrue(search("^привет").map(\.object).contains(items[0]))
+  }
+
   @MainActor
   func testSimpleSearch() { // swiftlint:disable:this function_body_length
     Defaults[.searchMode] = Search.Mode.exact

@@ -33,6 +33,7 @@ class Search {
 
   typealias Searchable = HistoryItemDecorator
 
+  // Every mode ignores letter case, regular expressions included.
   private let fuse = Fuse(threshold: 0.7) // threshold found by trial-and-error
   private let fuzzySearchLimit = 5_000
 
@@ -45,7 +46,7 @@ class Search {
     case .mixed:
       return mixedSearch(string: string, within: within)
     case .regexp:
-      return simpleSearch(string: string, within: within, options: .regularExpression)
+      return simpleSearch(string: string, within: within, options: [.regularExpression, .caseInsensitive])
     case .fuzzy:
       return fuzzySearch(string: string, within: within)
     default:
@@ -118,7 +119,7 @@ class Search {
       return results
     }
 
-    results = simpleSearch(string: string, within: within, options: .regularExpression)
+    results = simpleSearch(string: string, within: within, options: [.regularExpression, .caseInsensitive])
     guard results.isEmpty else {
       return results
     }
