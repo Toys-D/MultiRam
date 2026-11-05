@@ -15,6 +15,7 @@ struct GeneralSettingsPane: View {
   @State private var pasteWithoutFormatting = HistoryItemAction.pasteWithoutFormatting.modifierFlags.description
 
   @State private var updater = SoftwareUpdater.shared
+  @State private var language = AppLanguage.selected(in: .standard, domain: Bundle.main.bundleIdentifier ?? "")
 
   var body: some View {
     SettingsPage(title: SettingsSection.general.title) {
@@ -27,6 +28,34 @@ struct GeneralSettingsPane: View {
           LaunchAtLogin.Toggle {
             Text("LaunchAtLogin", tableName: "GeneralSettings")
           }
+        }
+
+        Section {
+          Picker(selection: $language) {
+            Text("language_system").tag(AppLanguage.system)
+            Divider()
+            ForEach(AppLanguage.choices, id: \.code) { choice in
+              Text(verbatim: choice.name).tag(choice.code)
+            }
+          } label: {
+            Text("language_title")
+          }
+          .onChange(of: language) {
+            AppLanguage.select(language, in: .standard)
+          }
+
+          if AppLanguage.resolved(language) != AppLanguage.current {
+            LabeledContent {
+              Button(NSLocalizedString("language_restart_button", comment: "")) {
+                AppRelauncher.relaunch()
+              }
+            } label: {
+              Text("language_restart_hint")
+            }
+          }
+        } footer: {
+          Text("language_footer")
+            .settingsFootnote()
         }
 
         Section {

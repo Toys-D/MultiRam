@@ -53,6 +53,11 @@
 "support_button" = "通过 PayPal 支持";
 "support_thanks" = "感谢每一位提供帮助的人！";
 "support_note" = "支持完全自愿：应用的任何功能都不依赖于此。";
+"language_title" = "语言";
+"language_system" = "跟随 macOS";
+"language_restart_hint" = "重新启动 MultiRam 后将使用新语言。";
+"language_restart_button" = "立即重新启动";
+"language_footer" = "如果 MultiRam 不支持你的 Mac 所用的语言，将使用英语。";
 "filter_all" = "全部";
 "filter_text" = "文本";
 "filter_images" = "图像";

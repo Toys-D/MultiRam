@@ -81,3 +81,42 @@ final class LocalizationTests: XCTestCase {
     return Set(strings.keys)
   }
 }
+
+final class AppLanguageTests: XCTestCase {
+  private let suite = "AppLanguageTests"
+  private var defaults: UserDefaults!
+
+  override func setUp() {
+    defaults = UserDefaults(suiteName: suite)
+    defaults.removePersistentDomain(forName: suite)
+  }
+
+  override func tearDown() {
+    defaults.removePersistentDomain(forName: suite)
+  }
+
+  func testFollowsTheSystemUntilALanguageIsChosen() {
+    XCTAssertEqual(AppLanguage.selected(in: defaults, domain: suite), AppLanguage.system)
+    AppLanguage.select("de", in: defaults)
+    XCTAssertEqual(AppLanguage.selected(in: defaults, domain: suite), "de")
+    XCTAssertEqual(defaults.persistentDomain(forName: suite)?["AppleLanguages"] as? [String], ["de"])
+    AppLanguage.select(AppLanguage.system, in: defaults)
+    XCTAssertEqual(AppLanguage.selected(in: defaults, domain: suite), AppLanguage.system)
+    XCTAssertNil(defaults.persistentDomain(forName: suite)?["AppleLanguages"])
+  }
+
+  // A system language MultiRam does not have falls back to English.
+  func testUnsupportedSystemLanguageMeansEnglish() {
+    XCTAssertEqual(AppLanguage.resolved(AppLanguage.system, preferred: ["ja-JP"]), "en")
+    XCTAssertEqual(AppLanguage.resolved(AppLanguage.system, preferred: ["fr-CA"]), "fr")
+    XCTAssertEqual(AppLanguage.resolved(AppLanguage.system, preferred: ["pt-BR"]), "pt-BR")
+    XCTAssertEqual(AppLanguage.resolved("uk", preferred: ["ja-JP"]), "uk")
+  }
+
+  func testEveryChoiceShipsWithTheApp() {
+    let shipped = Set(Bundle(for: AppState.self).localizations)
+    for choice in AppLanguage.choices {
+      XCTAssertTrue(shipped.contains(choice.code), choice.code)
+    }
+  }
+}

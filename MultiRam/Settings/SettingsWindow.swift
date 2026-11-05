@@ -40,7 +40,8 @@ enum SettingsSection: String, CaseIterable, Identifiable {
     case .general:
       return [("LaunchAtLogin", "GeneralSettings"), ("PasteAutomatically", "GeneralSettings"),
               ("PasteWithoutFormatting", "GeneralSettings"), ("Search", "GeneralSettings"),
-              ("NotificationsAndSounds", "GeneralSettings"), ("paste_access_title", nil)]
+              ("NotificationsAndSounds", "GeneralSettings"), ("paste_access_title", nil),
+              ("language_title", nil)]
     case .shortcuts:
       return [("Open", "GeneralSettings"), ("OpenFallback", "GeneralSettings"),
               ("Pin", "GeneralSettings"), ("Delete", "GeneralSettings")]

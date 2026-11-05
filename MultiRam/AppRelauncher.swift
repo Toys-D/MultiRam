@@ -76,7 +76,7 @@ enum AppRelauncher {
     let configuration = NSWorkspace.OpenConfiguration()
     configuration.createsNewApplicationInstance = true
     configuration.activates = false
-    logger.notice("Relaunching to pick up the Accessibility permission")
+    logger.notice("Relaunching")
     open(bundleURL, configuration) { error in
       DispatchQueue.main.async {
         MainActor.assumeIsolated {

@@ -38,7 +38,7 @@ Press **Option + V** and the history opens right at the cursor. Type to search, 
 - **Tidies itself up.** Items older than a day, a week, a month, three months or a year can be removed automatically; pinned ones stay.
 - **Exclusions.** Ignore chosen apps, data types or text that matches a pattern; pause recording with one click.
 - **Updates.** Once a day MultiRam asks GitHub for the latest release and offers its download page. Your history never leaves your Mac.
-- **In your language:** English, Spanish, French, German, Portuguese, Chinese (Simplified and Traditional), Russian and Ukrainian, following the system language.
+- **In your language:** English, Spanish, French, German, Portuguese, Chinese (Simplified and Traditional), Russian and Ukrainian. MultiRam follows the system language, or the one you pick in Settings ▸ General; if it doesn't have yours, it uses English.
 
 ## Install
 
@@ -131,7 +131,7 @@ MultiRam History is free: use it at home and at work and share the original DMG.
 - **Порядок сам собой.** Записи старше дня, недели, месяца, трёх месяцев или года могут удаляться автоматически; закреплённые остаются.
 - **Исключения.** Не записывать выбранные программы, типы данных или текст по шаблону; приостановить запись одним щелчком.
 - **Обновления.** Раз в сутки MultiRam спрашивает у GitHub номер последнего релиза и предлагает страницу загрузки. История никогда не покидает Mac.
-- **На вашем языке:** английский, испанский, французский, немецкий, португальский, китайский (упрощённый и традиционный), русский и украинский — по языку системы.
+- **На вашем языке:** английский, испанский, французский, немецкий, португальский, китайский (упрощённый и традиционный), русский и украинский. MultiRam выбирает язык по системе или тот, что вы укажете в «Настройки ▸ Основные»; если вашего языка нет, программа будет на английском.
 
 ### Установка
 

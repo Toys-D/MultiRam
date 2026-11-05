@@ -58,6 +58,11 @@
 "support_button" = "Підтримати через PayPal";
 "support_thanks" = "Дякую кожному, хто вже допоміг!";
 "support_note" = "Підтримка добровільна: нічого в програмі від неї не залежить.";
+"language_title" = "Мова";
+"language_system" = "Як у macOS";
+"language_restart_hint" = "Нова мова ввімкнеться після перезапуску MultiRam.";
+"language_restart_button" = "Перезапустити";
+"language_footer" = "Якщо мови вашого Mac немає у списку, MultiRam буде англійською.";
 "filter_all" = "Усе";
 "filter_text" = "Текст";
 "filter_images" = "Зображення";
