@@ -19,7 +19,7 @@ MultiRam History is a lightweight clipboard history manager for macOS. It keeps 
 - Pick an item to paste it into the app you were working in.
 - The arrow at the right edge of a row opens the whole item in a side panel: the full text, or the image at its natural size.
 - Under an image in the side panel, **Open in…** buttons list the image editors and viewers found on your Mac (Preview, Photoshop, Illustrator and others). The app receives a read-only copy with the original bytes.
-- Search the history and pin items with the **PIN** button in the row. Pinned rows get a light tint; the color is chosen in Settings.
+- Search the whole text of every item, ignoring letter case, and pin items with the **PIN** button in the row. Pinned rows get a light tint; the color is chosen in Settings.
 - Filters above the list show only **Text**, **Images** or **Files**.
 - **Space** (with an empty search) or **⌘Y** previews the selected item in the side panel.
 - **Shift+↑/↓** or **⌘-click** selects several items; **Return** pastes them as one block, one per line.
@@ -101,7 +101,7 @@ MultiRam History — лёгкий менеджер истории буфера �
 - Выбранная запись вставляется в программу, в которой вы работали.
 - Стрелка у правого края строки открывает запись целиком в боковой панели: полный текст или картинку в натуральную величину.
 - Под картинкой в боковой панели — кнопки **«Открыть в…»** для графических редакторов и просмотрщиков, найденных на Mac (Просмотр, Photoshop, Illustrator и другие). Программе передаётся копия с исходными байтами, доступная только для чтения.
-- Поиск по истории и закрепление записей кнопкой **PIN** прямо в строке. Закреплённые строки слегка подкрашены, цвет выбирается в настройках.
+- Поиск по всему тексту записей без учёта регистра и закрепление записей кнопкой **PIN** прямо в строке. Закреплённые строки слегка подкрашены, цвет выбирается в настройках.
 - Фильтры над списком показывают только **Текст**, **Картинки** или **Файлы**.
 - **Пробел** (когда поле поиска пустое) или **⌘Y** — предпросмотр выбранной записи в боковой панели.
 - **Shift+↑/↓** или **⌘+щелчок** выделяют несколько записей; **Return** вставит их одним блоком, каждую с новой строки.

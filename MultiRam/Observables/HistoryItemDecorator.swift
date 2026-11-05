@@ -41,6 +41,15 @@ class HistoryItemDecorator: Identifiable, Hashable, HasVisibility {
   private(set) var hasImage = false
   private(set) var hasExpandableContent = false
   private(set) var kind = HistoryItemKind.text
+  @ObservationIgnored private var searchableTextCache: String?
+
+  // The whole text, folded for search and kept until the content changes.
+  var searchableText: String {
+    if let searchableTextCache { return searchableTextCache }
+    let text = item.isDeleted ? title : Search.folded(item.previewableText.shortened(to: Search.fullTextLimit))
+    searchableTextCache = text
+    return text
+  }
   @ObservationIgnored private var imageSizeCache: NSSize?
   @ObservationIgnored private var imageSizeResolved = false
   var applicationImage: ApplicationImage
@@ -77,6 +86,7 @@ class HistoryItemDecorator: Identifiable, Hashable, HasVisibility {
   // Recomputed when the model changes; skipped once the model is gone.
   func refreshContentFlags() {
     guard !item.isDeleted else { return }
+    searchableTextCache = nil
     hasImage = item.imageData != nil
     kind = HistoryItemKind.of(hasFiles: !item.fileURLs.isEmpty && !item.universalClipboard, hasImage: hasImage)
     let text = self.text

@@ -49,6 +49,36 @@ class SearchTests: XCTestCase {
     XCTAssertTrue(search("^привет").map(\.object).contains(items[0]))
   }
 
+  // A word past the 1,000 characters kept as the title is still found, without a highlight.
+  @MainActor
+  func testFindsWordsBeyondTheTitle() {
+    let long = String(repeating: "слово ", count: 300) + "Финал"
+    items = [
+      HistoryItemDecorator(historyItemWithTitle(long)),
+      HistoryItemDecorator(historyItemWithTitle("short"))
+    ]
+    XCTAssertFalse(items[0].title.contains("Финал"), "the title is expected to be cut")
+    for mode in [Search.Mode.exact, .regexp, .mixed] {
+      Defaults[.searchMode] = mode
+      XCTAssertEqual(search("финал"), [Search.SearchResult(score: nil, object: items[0], ranges: [])], "\(mode)")
+    }
+  }
+
+  // "ё" and "е" are the same letter for search, and the highlight still covers the original text.
+  @MainActor
+  func testTreatsYoAsYe() {
+    Defaults[.searchMode] = .exact
+    items = [
+      HistoryItemDecorator(historyItemWithTitle("Ещё раз")),
+      HistoryItemDecorator(historyItemWithTitle("еще два"))
+    ]
+    XCTAssertEqual(search("еще"), [
+      Search.SearchResult(score: nil, object: items[0], ranges: [range(from: 0, to: 2, in: items[0])]),
+      Search.SearchResult(score: nil, object: items[1], ranges: [range(from: 0, to: 2, in: items[1])])
+    ])
+    XCTAssertEqual(search("ЕЩЁ").map(\.object), items)
+  }
+
   @MainActor
   func testSimpleSearch() { // swiftlint:disable:this function_body_length
     Defaults[.searchMode] = Search.Mode.exact
