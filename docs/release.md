@@ -1,6 +1,10 @@
-# MultiRam 1.5.0
+# MultiRam 1.5.1
 
-Версия приложения: **1.5.0**, сборка **73**. macOS **14 или новее**, Intel и Apple Silicon.
+Версия приложения: **1.5.1**, сборка **74**. macOS **14 или новее**, Intel и Apple Silicon.
+
+**Настройки на текущем рабочем столе.** Повторно открытое окно настроек появляется на том рабочем столе, где вы сейчас находитесь, а не перебрасывает на тот, где его закрыли.
+
+## Изменения 1.5.0
 
 **Проверка обновлений.** Раз в сутки MultiRam спрашивает у GitHub номер последнего релиза (`api.github.com/repos/Toys-D/MultiRam/releases/latest`). Если версия новее, появляется окно с кнопками «Скачать» (открывает страницу релиза), «Позже» и «Пропустить эту версию». В «Основных» — переключатель и кнопка «Проверить сейчас». Для этого у программы появилось разрешение песочницы `network.client`; история буфера обмена никуда не отправляется.
 
@@ -77,18 +81,18 @@ python3 scripts/package-release.py \
   --identity "Apple Development"
 ```
 
-Результат находится в `releases/MultiRam-1.5.0/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
+Результат находится в `releases/MultiRam-1.5.1/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
 
 ## Публикация на GitHub
 
 Кнопка «Скачать» в README ведёт на `releases/latest/download/MultiRam.dmg`, поэтому к каждому релизу прикладывается копия DMG с постоянным именем `MultiRam.dmg`. Версию в тексте кнопки README нужно обновить.
 
 ```sh
-cp releases/MultiRam-1.5.0/MultiRam-1.5.0.dmg .build/GitHubRelease/MultiRam.dmg
-gh release create v1.5.0 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.5.0" \
+cp releases/MultiRam-1.5.1/MultiRam-1.5.1.dmg .build/GitHubRelease/MultiRam.dmg
+gh release create v1.5.1 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.5.1" \
   --notes-file .build/GitHubRelease/notes.md --latest \
-  releases/MultiRam-1.5.0/MultiRam-1.5.0.dmg .build/GitHubRelease/MultiRam.dmg \
-  releases/MultiRam-1.5.0/MultiRam-1.5.0.app.zip releases/MultiRam-1.5.0/SHA256SUMS.txt
+  releases/MultiRam-1.5.1/MultiRam-1.5.1.dmg .build/GitHubRelease/MultiRam.dmg \
+  releases/MultiRam-1.5.1/MultiRam-1.5.1.app.zip releases/MultiRam-1.5.1/SHA256SUMS.txt
 ```
 
 Репозиторий публичный: ссылки работают у всех, а программа находит новый релиз через GitHub API (`releases/latest`).
@@ -109,7 +113,7 @@ gh release create v1.5.0 --repo Toys-D/MultiRam --target <commit> --title "Multi
 
 ```sh
 osascript -e 'tell application id "local.multiram.MultiRam" to quit'
-rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.5.0/MultiRam.app /Applications/
+rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.5.1/MultiRam.app /Applications/
 codesign -dvv /Applications/MultiRam.app 2>&1 | grep 'Authority=Apple Development'
 open /Applications/MultiRam.app
 ```

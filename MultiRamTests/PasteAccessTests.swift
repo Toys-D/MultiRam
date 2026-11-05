@@ -79,6 +79,13 @@ final class SettingsWindowTests: XCTestCase {
     XCTAssertTrue(SettingsSection.allCases.filter { $0.matches("zzz-no-such-setting") }.isEmpty)
   }
 
+  @MainActor
+  func testSettingsOpenOnTheCurrentDesktop() {
+    let window = SettingsWindowPresenter().makeWindow()
+    XCTAssertTrue(window.collectionBehavior.contains(.moveToActiveSpace))
+    XCTAssertFalse(window.isReleasedWhenClosed)
+  }
+
   func testSearchMovesTheSelectionToAVisibleSection() {
     let model = SettingsModel()
     model.selection = .about

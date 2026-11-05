@@ -234,7 +234,7 @@ final class SettingsWindowPresenter {
     window.orderFrontRegardless()
   }
 
-  private func makeWindow() -> NSWindow {
+  func makeWindow() -> NSWindow {
     let root = SettingsView(model: model)
       .environment(AppState.shared)
       .modelContainer(Storage.shared.container)
@@ -255,6 +255,8 @@ final class SettingsWindowPresenter {
     window.titleVisibility = .hidden
     window.titlebarAppearsTransparent = true
     window.isReleasedWhenClosed = false
+    // A closed window is only hidden; without this, reopening it switches back to the desktop it was on.
+    window.collectionBehavior.insert(.moveToActiveSpace)
     window.identifier = NSUserInterfaceItemIdentifier("multiram-settings")
     window.center()
     window.setFrameAutosaveName("MultiRamSettings")
