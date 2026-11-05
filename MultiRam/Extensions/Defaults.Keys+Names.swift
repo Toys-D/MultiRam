@@ -11,6 +11,7 @@ struct StorageType {
 }
 
 extension Defaults.Keys {
+  static let checkForUpdates = Key<Bool>("checkForUpdates", default: true)
   static let clearOnQuit = Key<Bool>("clearOnQuit", default: false)
   static let clearSystemClipboard = Key<Bool>("clearSystemClipboard", default: false)
   static let clipboardCheckInterval = Key<Double>("clipboardCheckInterval", default: 0.5)
@@ -37,6 +38,7 @@ extension Defaults.Keys {
   )
   static let imageMaxHeight = Key<Int>("imageMaxHeight", default: 100)
   static let lastReviewRequestedAt = Key<Date>("lastReviewRequestedAt", default: Date.now)
+  static let lastUpdateCheck = Key<Date?>("lastUpdateCheck")
   static let menuIcon = Key<MenuIcon>("menuIcon", default: .multiram)
   static let migrations = Key<[String: Bool]>("migrations", default: [:])
   static let numberOfUsages = Key<Int>("numberOfUsages", default: 0)
@@ -58,6 +60,7 @@ extension Defaults.Keys {
   static let showSpecialSymbols = Key<Bool>("showSpecialSymbols", default: true)
   static let showTitle = Key<Bool>("showTitle", default: true)
   static let size = Key<Int>("historySize", default: 22)
+  static let skippedUpdateVersion = Key<String?>("skippedUpdateVersion")
   static let sortBy = Key<Sorter.By>("sortBy", default: .firstCopiedAt)
   static let suppressClearAlert = Key<Bool>("suppressClearAlert", default: false)
   static let windowSize = Key<NSSize>("windowSize", default: NSSize(width: 450, height: 800))

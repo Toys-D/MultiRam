@@ -14,7 +14,7 @@ struct GeneralSettingsPane: View {
   @State private var pasteModifier = HistoryItemAction.paste.modifierFlags.description
   @State private var pasteWithoutFormatting = HistoryItemAction.pasteWithoutFormatting.modifierFlags.description
 
-  @State private var updater = SoftwareUpdater()
+  @State private var updater = SoftwareUpdater.shared
 
   var body: some View {
     SettingsPage(title: SettingsSection.general.title) {
@@ -27,14 +27,33 @@ struct GeneralSettingsPane: View {
           LaunchAtLogin.Toggle {
             Text("LaunchAtLogin", tableName: "GeneralSettings")
           }
-          if updater.isAvailable {
-            Toggle(isOn: $updater.automaticallyChecksForUpdates) {
-              Text("CheckForUpdates", tableName: "GeneralSettings")
+        }
+
+        Section {
+          Toggle(isOn: $updater.automaticallyChecksForUpdates) {
+            Text("CheckForUpdates", tableName: "GeneralSettings")
+            Text("update_privacy")
+          }
+          LabeledContent {
+            HStack(spacing: 10) {
+              if updater.isChecking {
+                ProgressView()
+                  .controlSize(.small)
+              }
+              if case .available(let info) = updater.lastResult {
+                Button(NSLocalizedString("update_download", comment: "")) {
+                  NSWorkspace.shared.open(info.pageURL)
+                }
+              }
+              Button {
+                updater.checkForUpdates()
+              } label: {
+                Text("CheckNow", tableName: "GeneralSettings")
+              }
+              .disabled(updater.isChecking)
             }
-            Button(
-              action: { updater.checkForUpdates() },
-              label: { Text("CheckNow", tableName: "GeneralSettings") }
-            )
+          } label: {
+            Text(updateStatus)
           }
         }
 
@@ -79,6 +98,19 @@ struct GeneralSettingsPane: View {
         }
       }
       .formStyle(.grouped)
+    }
+  }
+
+  private var updateStatus: String {
+    switch updater.lastResult {
+    case .available(let info):
+      return String(format: NSLocalizedString("update_available_title", comment: ""), info.version)
+    case .upToDate:
+      return NSLocalizedString("update_up_to_date", comment: "")
+    case .failed:
+      return NSLocalizedString("update_failed", comment: "")
+    case nil:
+      return About.version
     }
   }
 

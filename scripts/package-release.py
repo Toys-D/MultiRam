@@ -163,7 +163,7 @@ def main():
 
 При обновлении сначала завершите ранее запущенное приложение.
 Существующая история и настройки сохраняются. Установщик не содержит личной истории.
-Автоматические обновления пока отключены.
+Раз в сутки MultiRam проверяет на GitHub, вышла ли новая версия (можно выключить в настройках).
 
 English: Drag MultiRam.app to Applications and open it. Use Option + V for history.
 Allow Accessibility for automatic pasting; MultiRam restarts by itself once it is on.

@@ -132,6 +132,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     timer.tolerance = 5 * 60
     RunLoop.main.add(timer, forMode: .common)
     retentionTimer = timer
+    MainActor.assumeIsolated {
+      SoftwareUpdater.shared.start()
+    }
   }
 
   func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

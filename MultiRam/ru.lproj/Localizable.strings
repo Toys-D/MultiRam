@@ -68,6 +68,16 @@
 "highlight_pinned_description" = "Прикреплённые строки слегка подкрашиваются этим цветом.";
 "highlight_pinned_reset" = "Вернуть цвет логотипа";
 "shortcuts_hint" = "Пробел (когда поле поиска пустое) или ⌘Y — предпросмотр выбранной записи. Shift+↑/↓ или ⌘+щелчок выделяют несколько записей; Return вставит их одним блоком, каждую с новой строки.";
+"update_available_title" = "Доступна MultiRam %@";
+"update_available_message" = "У вас версия %@. Откройте страницу релиза, чтобы скачать новый DMG.";
+"update_download" = "Скачать";
+"update_later" = "Позже";
+"update_skip" = "Пропустить эту версию";
+"update_up_to_date" = "У вас последняя версия";
+"update_up_to_date_message" = "MultiRam %@ — самая новая версия.";
+"update_failed" = "Не удалось проверить обновления";
+"update_failed_message" = "GitHub не ответил. Проверьте подключение к интернету и попробуйте ещё раз.";
+"update_privacy" = "Раз в сутки MultiRam спрашивает у GitHub номер последнего релиза. История буфера обмена никуда не отправляется.";
 "clear_alert_message" = "Вы дейстительно хотите очистить историю?";
 "clear_alert_comment" = "Это действие необратимо.";
 "clear_alert_cancel" = "Отмена";

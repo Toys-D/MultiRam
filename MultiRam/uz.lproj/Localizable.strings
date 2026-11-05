@@ -63,6 +63,16 @@
 "highlight_pinned_description" = "Pinned rows get a light tint of this color.";
 "highlight_pinned_reset" = "Use the logo color";
 "shortcuts_hint" = "Space (with an empty search) or ⌘Y previews the selected item. Shift+↑/↓ or ⌘-click selects several items; Return pastes them as one block, one per line.";
+"update_available_title" = "MultiRam %@ is available";
+"update_available_message" = "You have version %@. Open the release page to download the new DMG.";
+"update_download" = "Download";
+"update_later" = "Later";
+"update_skip" = "Skip This Version";
+"update_up_to_date" = "You have the latest version";
+"update_up_to_date_message" = "MultiRam %@ is the newest release.";
+"update_failed" = "Could not check for updates";
+"update_failed_message" = "GitHub did not answer. Check the internet connection and try again.";
+"update_privacy" = "Once a day MultiRam asks GitHub for the latest release. Your history never leaves this Mac.";
 "clear_alert_message" = "Haqiqatan ham tarixni tozalamoqchimisiz?";
 "clear_alert_comment" = "Bu amalni bekor qila olmaysiz.";
 "clear_alert_cancel" = "Bekor qilish";

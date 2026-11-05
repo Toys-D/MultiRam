@@ -1,6 +1,10 @@
-# MultiRam 1.4.0
+# MultiRam 1.5.0
 
-Версия приложения: **1.4.0**, сборка **72**. macOS **14 или новее**, Intel и Apple Silicon.
+Версия приложения: **1.5.0**, сборка **73**. macOS **14 или новее**, Intel и Apple Silicon.
+
+**Проверка обновлений.** Раз в сутки MultiRam спрашивает у GitHub номер последнего релиза (`api.github.com/repos/Toys-D/MultiRam/releases/latest`). Если версия новее, появляется окно с кнопками «Скачать» (открывает страницу релиза), «Позже» и «Пропустить эту версию». В «Основных» — переключатель и кнопка «Проверить сейчас». Для этого у программы появилось разрешение песочницы `network.client`; история буфера обмена никуда не отправляется.
+
+## Изменения 1.4.0
 
 **Фильтры.** Над списком — «Всё / Текст / Картинки / Файлы». Фильтр действует и на закреплённые записи и сбрасывается на «Всё», когда окно закрывается.
 
@@ -70,24 +74,24 @@ xcodebuild -project MultiRam.xcodeproj -scheme MultiRam \
 python3 scripts/package-release.py \
   --app /tmp/multiram-release/DerivedData/Build/Products/Release/MultiRam.app \
   --checkouts /tmp/multiram-release/DerivedData/SourcePackages/checkouts \
-  --identity "Apple Development: toysappleid@gmail.com (3P8J62VT66)"
+  --identity "Apple Development"
 ```
 
-Результат находится в `releases/MultiRam-1.4.0/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
+Результат находится в `releases/MultiRam-1.5.0/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
 
 ## Публикация на GitHub
 
 Кнопка «Скачать» в README ведёт на `releases/latest/download/MultiRam.dmg`, поэтому к каждому релизу прикладывается копия DMG с постоянным именем `MultiRam.dmg`. Версию в тексте кнопки README нужно обновить.
 
 ```sh
-cp releases/MultiRam-1.4.0/MultiRam-1.4.0.dmg .build/GitHubRelease/MultiRam.dmg
-gh release create v1.4.0 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.4.0" \
+cp releases/MultiRam-1.5.0/MultiRam-1.5.0.dmg .build/GitHubRelease/MultiRam.dmg
+gh release create v1.5.0 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.5.0" \
   --notes-file .build/GitHubRelease/notes.md --latest \
-  releases/MultiRam-1.4.0/MultiRam-1.4.0.dmg .build/GitHubRelease/MultiRam.dmg \
-  releases/MultiRam-1.4.0/MultiRam-1.4.0.app.zip releases/MultiRam-1.4.0/SHA256SUMS.txt
+  releases/MultiRam-1.5.0/MultiRam-1.5.0.dmg .build/GitHubRelease/MultiRam.dmg \
+  releases/MultiRam-1.5.0/MultiRam-1.5.0.app.zip releases/MultiRam-1.5.0/SHA256SUMS.txt
 ```
 
-Репозиторий приватный: ссылки работают для тех, у кого есть доступ к нему.
+Репозиторий публичный: ссылки работают у всех, а программа находит новый релиз через GitHub API (`releases/latest`).
 
 ## Установка
 
@@ -105,7 +109,7 @@ gh release create v1.4.0 --repo Toys-D/MultiRam --target <commit> --title "Multi
 
 ```sh
 osascript -e 'tell application id "local.multiram.MultiRam" to quit'
-rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.4.0/MultiRam.app /Applications/
+rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.5.0/MultiRam.app /Applications/
 codesign -dvv /Applications/MultiRam.app 2>&1 | grep 'Authority=Apple Development'
 open /Applications/MultiRam.app
 ```

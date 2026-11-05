@@ -81,7 +81,7 @@ A universal release (`.app`, `.app.zip`, `.dmg`) is built with `scripts/package-
 
 ### Data
 
-Bundle identifier: `local.multiram.MultiRam`. The history is stored in `Application Support/MultiRam/Storage.sqlite` inside the app container; settings live in its UserDefaults domain. Nothing leaves your Mac, and automatic updates are off.
+Bundle identifier: `local.multiram.MultiRam`. The history is stored in `Application Support/MultiRam/Storage.sqlite` inside the app container; settings live in its UserDefaults domain. The history never leaves your Mac. The only network request is the update check: once a day MultiRam asks GitHub for the latest release and offers its download page (Settings → General, can be turned off).
 
 ### Author
 
@@ -148,7 +148,7 @@ macOS запомнит выбор: эта копия MultiRam дальше от�
 
 ### Данные
 
-Идентификатор приложения: `local.multiram.MultiRam`. История хранится в `Application Support/MultiRam/Storage.sqlite` внутри контейнера приложения, настройки — в его домене UserDefaults. Данные не покидают Mac, автоматические обновления отключены.
+Идентификатор приложения: `local.multiram.MultiRam`. История хранится в `Application Support/MultiRam/Storage.sqlite` внутри контейнера приложения, настройки — в его домене UserDefaults. История никогда не покидает Mac. Единственный сетевой запрос — проверка обновлений: раз в сутки MultiRam спрашивает у GitHub номер последнего релиза и предлагает страницу загрузки (Настройки → Основные, можно выключить).
 
 ### Автор
 

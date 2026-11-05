@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EA3454B67D5C9D773F91716 /* SoftwareUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF99E9663719E66194889A /* SoftwareUpdaterTests.swift */; };
 		08D4CBC551AA6E43838EDF00 /* HistoryFeaturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51431979E69F6285562877 /* HistoryFeaturesTests.swift */; };
 		F1F0F7BDABEF68873E91422C /* HistoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B5AEE1D9E68628BFF790E /* HistoryFilter.swift */; };
 		A4E428FAF483C0F51B43B32D /* SettingsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9360A9C460E3A2A68EA93A /* SettingsComponents.swift */; };
@@ -187,6 +188,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B3BF99E9663719E66194889A /* SoftwareUpdaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareUpdaterTests.swift; sourceTree = "<group>"; };
 		6C51431979E69F6285562877 /* HistoryFeaturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFeaturesTests.swift; sourceTree = "<group>"; };
 		C62B5AEE1D9E68628BFF790E /* HistoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilter.swift; sourceTree = "<group>"; };
 		8B9360A9C460E3A2A68EA93A /* SettingsComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponents.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 		DA360DB11E3DF137005C6F6B /* MultiRamTests */ = {
 			isa = PBXGroup;
 			children = (
+				B3BF99E9663719E66194889A /* SoftwareUpdaterTests.swift */,
 				6C51431979E69F6285562877 /* HistoryFeaturesTests.swift */,
 				36973EB6F57E0FE1CDD05AE8 /* PasteAccessTests.swift */,
 				09B72B2939EFBD786088694A /* LocalizationTests.swift */,
@@ -1050,6 +1053,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA3454B67D5C9D773F91716 /* SoftwareUpdaterTests.swift in Sources */,
 				08D4CBC551AA6E43838EDF00 /* HistoryFeaturesTests.swift in Sources */,
 				3720F0ECFF826D419C75E5EB /* PasteAccessTests.swift in Sources */,
 				B29BAA0141E4E3DE61BF1A5A /* LocalizationTests.swift in Sources */,
@@ -1702,7 +1706,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 73;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1717,7 +1721,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = local.multiram.MultiRam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1738,7 +1742,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 73;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1753,7 +1757,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = local.multiram.MultiRam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
