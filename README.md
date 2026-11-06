@@ -5,10 +5,11 @@
 ![Intel and Apple Silicon](https://img.shields.io/badge/Intel%20%26%20Apple%20Silicon-universal-informational)
 [![Downloads](https://img.shields.io/github/downloads/Toys-D/MultiRam/total?color=informational)](https://github.com/Toys-D/MultiRam/releases)
 [![License: freeware](https://img.shields.io/badge/license-freeware-green)](LICENSE)
+[![Languages: 9](https://img.shields.io/badge/languages-9-informational)](#supported-languages)
 
 A clipboard history manager for macOS. MultiRam keeps the texts, images and files you copy, finds any of them in a second and pastes it back where you are working.
 
-**[Download MultiRam.dmg](https://github.com/Toys-D/MultiRam/releases/latest/download/MultiRam.dmg)** · macOS 14 or later · Intel and Apple Silicon · free · *[Russian version below](#по-русски)*
+**[Download MultiRam.dmg](https://github.com/Toys-D/MultiRam/releases/latest/download/MultiRam.dmg)** · macOS 14 or later · Intel and Apple Silicon · 9 languages · free · *[Russian version below](#по-русски)*
 
 <img src="images/en/banner.jpg" alt="MultiRam History: your clipboard history, always at hand">
 
@@ -39,6 +40,24 @@ Press **Option + V** and the history opens right at the cursor. Type to search, 
 - **Exclusions.** Ignore chosen apps, data types or text that matches a pattern; pause recording with one click.
 - **Updates.** Once a day MultiRam asks GitHub for the latest release and offers its download page. Your history never leaves your Mac.
 - **In your language:** English, Spanish, French, German, Portuguese, Chinese (Simplified and Traditional), Russian and Ukrainian. MultiRam follows the system language, or the one you pick in Settings ▸ General; if it doesn't have yours, it uses English.
+
+## Supported languages
+
+MultiRam is fully translated into nine languages:
+
+| Language | In English |
+|---|---|
+| English | English |
+| Español | Spanish |
+| Français | French |
+| Deutsch | German |
+| Português (Brasil) | Portuguese (Brazil) |
+| 简体中文 | Chinese (Simplified) |
+| 繁體中文 | Chinese (Traditional) |
+| Русский | Russian |
+| Українська | Ukrainian |
+
+It follows the language of macOS, or the one you pick in **Settings ▸ General ▸ Language**. If your Mac uses a language that is not listed here, MultiRam is in English.
 
 ## Install
 
@@ -101,7 +120,7 @@ MultiRam History is free: use it at home and at work and share the original DMG.
 
 **MultiRam History** — менеджер истории буфера обмена для macOS. Хранит скопированные тексты, картинки и файлы, находит любую запись за секунду и вставляет её туда, где вы работаете.
 
-**[Скачать MultiRam.dmg](https://github.com/Toys-D/MultiRam/releases/latest/download/MultiRam.dmg)** · macOS 14 и новее · Intel и Apple Silicon · бесплатно
+**[Скачать MultiRam.dmg](https://github.com/Toys-D/MultiRam/releases/latest/download/MultiRam.dmg)** · macOS 14 и новее · Intel и Apple Silicon · 9 языков · бесплатно
 
 <img src="images/ru/banner.jpg" alt="MultiRam History — история буфера обмена всегда под рукой">
 
@@ -132,6 +151,24 @@ MultiRam History is free: use it at home and at work and share the original DMG.
 - **Исключения.** Не записывать выбранные программы, типы данных или текст по шаблону; приостановить запись одним щелчком.
 - **Обновления.** Раз в сутки MultiRam спрашивает у GitHub номер последнего релиза и предлагает страницу загрузки. История никогда не покидает Mac.
 - **На вашем языке:** английский, испанский, французский, немецкий, португальский, китайский (упрощённый и традиционный), русский и украинский. MultiRam выбирает язык по системе или тот, что вы укажете в «Настройки ▸ Основные»; если вашего языка нет, программа будет на английском.
+
+### Поддерживаемые языки
+
+MultiRam полностью переведён на девять языков:
+
+| Язык | По-русски |
+|---|---|
+| English | английский |
+| Español | испанский |
+| Français | французский |
+| Deutsch | немецкий |
+| Português (Brasil) | португальский (Бразилия) |
+| 简体中文 | китайский (упрощённый) |
+| 繁體中文 | китайский (традиционный) |
+| Русский | русский |
+| Українська | украинский |
+
+Программа выбирает язык по системе или тот, что вы укажете в **«Настройки ▸ Основные ▸ Язык»**. Если язык вашего Mac не из этого списка, MultiRam будет на английском.
 
 ### Установка
 
