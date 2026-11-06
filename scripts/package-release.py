@@ -21,6 +21,13 @@ def run(*args):
     return subprocess.run([str(arg) for arg in args], check=True, capture_output=True).stdout
 
 
+# On macOS 27 a fresh build can carry the system "restricted" file flag. ditto and cp -p copy
+# file flags, and setting that one fails with "Operation not permitted", so bundles are copied
+# with plain cp -R: symbolic links stay links, modes and extended attributes come along.
+def copy_bundle(source, destination):
+    run('cp', '-R', source, destination)
+
+
 def run_stderr(*args):
     # codesign prints signature details to standard error.
     return subprocess.run([str(arg) for arg in args], check=True, capture_output=True).stderr.decode()
@@ -135,7 +142,7 @@ def main():
     output = args.output.resolve()
     output.mkdir(parents=True)
     app = output / 'MultiRam.app'
-    run('ditto', source, app)
+    copy_bundle(source, app)
     notice_text = '\n\n' + ('\n\n' + '=' * 72 + '\n\n').join(notices)
     (app / 'Contents/Resources/ThirdPartyNotices.txt').write_text(notice_text)
     (output / 'ThirdPartyNotices.txt').write_text(notice_text)
@@ -200,7 +207,7 @@ If blocked, use System Settings → Privacy & Security → Open Anyway after att
         # Resigning changes the Mach-O signature, but never rebuilds the app.
         stage = temp / 'DMG'
         stage.mkdir()
-        run('ditto', app, stage / app.name)
+        copy_bundle(app, stage / app.name)
         (stage / 'Applications').symlink_to('/Applications')
         for name in ['Установка.txt', 'LICENSE.txt', 'ThirdPartyNotices.txt', 'Release-Notes.md']:
             shutil.copy2(output / name, stage / name)
