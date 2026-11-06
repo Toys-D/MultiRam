@@ -7,6 +7,8 @@
 [![License: freeware](https://img.shields.io/badge/license-freeware-green)](LICENSE)
 [![Languages: 9](https://img.shields.io/badge/languages-9-informational)](#supported-languages)
 
+**English** · [Русский](#по-русски) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt-BR.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [Українська](README.uk.md)
+
 A clipboard history manager for macOS. MultiRam keeps the texts, images and files you copy, finds any of them in a second and pastes it back where you are working.
 
 **[Download MultiRam.dmg](https://github.com/Toys-D/MultiRam/releases/latest/download/MultiRam.dmg)** · macOS 14 or later · Intel and Apple Silicon · 9 languages · free · *[Russian version below](#по-русски)*
@@ -48,14 +50,14 @@ MultiRam is fully translated into nine languages:
 | Language | In English |
 |---|---|
 | English | English |
-| Español | Spanish |
-| Français | French |
-| Deutsch | German |
-| Português (Brasil) | Portuguese (Brazil) |
-| 简体中文 | Chinese (Simplified) |
-| 繁體中文 | Chinese (Traditional) |
+| [Español](README.es.md) | Spanish |
+| [Français](README.fr.md) | French |
+| [Deutsch](README.de.md) | German |
+| [Português (Brasil)](README.pt-BR.md) | Portuguese (Brazil) |
+| [简体中文](README.zh-Hans.md) | Chinese (Simplified) |
+| [繁體中文](README.zh-Hant.md) | Chinese (Traditional) |
 | Русский | Russian |
-| Українська | Ukrainian |
+| [Українська](README.uk.md) | Ukrainian |
 
 It follows the language of macOS, or the one you pick in **Settings ▸ General ▸ Language**. If your Mac uses a language that is not listed here, MultiRam is in English.
 
@@ -118,6 +120,8 @@ MultiRam History is free: use it at home and at work and share the original DMG.
 
 ## По-русски
 
+[English](#multiram-history) · **Русский** · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt-BR.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [Українська](README.uk.md)
+
 **MultiRam History** — менеджер истории буфера обмена для macOS. Хранит скопированные тексты, картинки и файлы, находит любую запись за секунду и вставляет её туда, где вы работаете.
 
 **[Скачать MultiRam.dmg](https://github.com/Toys-D/MultiRam/releases/latest/download/MultiRam.dmg)** · macOS 14 и новее · Intel и Apple Silicon · 9 языков · бесплатно
@@ -159,14 +163,14 @@ MultiRam полностью переведён на девять языков:
 | Язык | По-русски |
 |---|---|
 | English | английский |
-| Español | испанский |
-| Français | французский |
-| Deutsch | немецкий |
-| Português (Brasil) | португальский (Бразилия) |
-| 简体中文 | китайский (упрощённый) |
-| 繁體中文 | китайский (традиционный) |
+| [Español](README.es.md) | испанский |
+| [Français](README.fr.md) | французский |
+| [Deutsch](README.de.md) | немецкий |
+| [Português (Brasil)](README.pt-BR.md) | португальский (Бразилия) |
+| [简体中文](README.zh-Hans.md) | китайский (упрощённый) |
+| [繁體中文](README.zh-Hant.md) | китайский (традиционный) |
 | Русский | русский |
-| Українська | украинский |
+| [Українська](README.uk.md) | украинский |
 
 Программа выбирает язык по системе или тот, что вы укажете в **«Настройки ▸ Основные ▸ Язык»**. Если язык вашего Mac не из этого списка, MultiRam будет на английском.
 
