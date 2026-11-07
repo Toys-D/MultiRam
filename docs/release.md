@@ -1,6 +1,10 @@
-# MultiRam 1.8.1
+# MultiRam 1.8.2
 
-Версия приложения: **1.8.1**, сборка **79**. macOS **14 или новее**, Intel и Apple Silicon.
+Версия приложения: **1.8.2**, сборка **80**. macOS **14 или новее**, Intel и Apple Silicon.
+
+**Подсказка про защищённый ввод.** Когда другая программа включает защищённый ввод (браузеры делают это в полях паролей) и macOS перестаёт передавать сочетание только с Option, под значком MultiRam на 8 секунд появляется подсказка: что сейчас не срабатывает, из-за какой программы и какое сочетание использовать вместо него. Щелчок по подсказке открывает историю. Для одной программы подсказка появляется не чаще раза в 30 минут; замок на значке и пояснение в меню остаются как раньше.
+
+## Изменения 1.8.1
 
 **Перевод.** В украинском и упрощённом китайском окно про разрешение на вставку называет раздел «Конфиденциальность и безопасность» так же, как macOS: «Приватність і безпека» и «隐私与安全» (было устаревшее «Безпека та конфіденційність» и «隐私与安全性» с неверной кавычкой).
 
@@ -111,18 +115,18 @@ python3 scripts/package-release.py \
   --identity "Apple Development"
 ```
 
-Результат находится в `releases/MultiRam-1.8.1/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
+Результат находится в `releases/MultiRam-1.8.2/`: приложение, DMG, ZIP приложения, инструкции, лицензии, манифест и SHA-256. Скрипт сохраняет исходную сборку, добавляет лицензии зависимостей в копию приложения, подписывает её сертификатом из `--identity` без отладочных разрешений и проверяет подпись и DMG. Для подписи сертификатом он дополнительно проверяет, что требование подписи ссылается на сертификат, а не на хеш сборки; отметка времени Apple требует сети. Без `--identity` копия подписывается ad hoc. Упаковщик отклоняет сторонние динамические библиотеки, которые Hardened Runtime не загрузит. Повторный запуск требует нового пустого каталога `--output`.
 
 ## Публикация на GitHub
 
 Кнопка «Скачать» в README ведёт на `releases/latest/download/MultiRam.dmg`, поэтому к каждому релизу прикладывается копия DMG с постоянным именем `MultiRam.dmg`. Версию в тексте кнопки README нужно обновить.
 
 ```sh
-cp releases/MultiRam-1.8.1/MultiRam-1.8.1.dmg .build/GitHubRelease/MultiRam.dmg
-gh release create v1.8.1 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.8.1" \
+cp releases/MultiRam-1.8.2/MultiRam-1.8.2.dmg .build/GitHubRelease/MultiRam.dmg
+gh release create v1.8.2 --repo Toys-D/MultiRam --target <commit> --title "MultiRam 1.8.2" \
   --notes-file .build/GitHubRelease/notes.md --latest \
-  releases/MultiRam-1.8.1/MultiRam-1.8.1.dmg .build/GitHubRelease/MultiRam.dmg \
-  releases/MultiRam-1.8.1/MultiRam-1.8.1.app.zip releases/MultiRam-1.8.1/SHA256SUMS.txt
+  releases/MultiRam-1.8.2/MultiRam-1.8.2.dmg .build/GitHubRelease/MultiRam.dmg \
+  releases/MultiRam-1.8.2/MultiRam-1.8.2.app.zip releases/MultiRam-1.8.2/SHA256SUMS.txt
 ```
 
 Репозиторий публичный: ссылки работают у всех, а программа находит новый релиз через GitHub API (`releases/latest`).
@@ -143,7 +147,7 @@ gh release create v1.8.1 --repo Toys-D/MultiRam --target <commit> --title "Multi
 
 ```sh
 osascript -e 'tell application id "local.multiram.MultiRam" to quit'
-rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.8.1/MultiRam.app /Applications/
+rm -rf /Applications/MultiRam.app && cp -R releases/MultiRam-1.8.2/MultiRam.app /Applications/
 codesign -dvv /Applications/MultiRam.app 2>&1 | grep 'Authority=Apple Development'
 open /Applications/MultiRam.app
 ```

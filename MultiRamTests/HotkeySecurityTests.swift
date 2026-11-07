@@ -150,4 +150,25 @@ final class SecureInputMonitorTests: XCTestCase {
       XCTAssertNil(snapshot.holderPID)
     }
   }
+
+  func testBubbleShowsWhenSecureInputStartsBlocking() {
+    var schedule = SecureInputBubbleSchedule(interval: 60)
+    let start = Date(timeIntervalSince1970: 0)
+    XCTAssertFalse(schedule.shouldShow(blocked: false, holder: nil, now: start))
+    XCTAssertTrue(schedule.shouldShow(blocked: true, holder: "Chrome", now: start))
+    // Not again while the same block lasts.
+    XCTAssertFalse(schedule.shouldShow(blocked: true, holder: "Chrome", now: start + 120))
+  }
+
+  func testBubbleShowsOncePerAppWithinInterval() {
+    var schedule = SecureInputBubbleSchedule(interval: 60)
+    let start = Date(timeIntervalSince1970: 0)
+    XCTAssertTrue(schedule.shouldShow(blocked: true, holder: "Chrome", now: start))
+    XCTAssertFalse(schedule.shouldShow(blocked: false, holder: nil, now: start + 5))
+    XCTAssertFalse(schedule.shouldShow(blocked: true, holder: "Chrome", now: start + 10))
+    XCTAssertFalse(schedule.shouldShow(blocked: false, holder: nil, now: start + 15))
+    XCTAssertTrue(schedule.shouldShow(blocked: true, holder: "Safari", now: start + 20))
+    XCTAssertFalse(schedule.shouldShow(blocked: false, holder: nil, now: start + 25))
+    XCTAssertTrue(schedule.shouldShow(blocked: true, holder: "Chrome", now: start + 61))
+  }
 }

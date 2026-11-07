@@ -22,6 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   private var statusItemVisibilityObserver: NSKeyValueObservation?
   private var retentionTimer: Timer?
+  private var secureInputBubble: SecureInputBubble?
+  private var secureInputBubbleSchedule = SecureInputBubbleSchedule()
 
   func applicationWillFinishLaunching(_ notification: Notification) { // swiftlint:disable:this function_body_length
     // After a relaunch, let the previous instance release the hotkeys and the clipboard first.
@@ -302,9 +304,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     } onChange: {
       Task { @MainActor [weak self] in
         self?.updateStatusItemImage()
+        self?.showSecureInputBubbleIfNeeded()
         self?.observeSecureInput()
       }
     }
+  }
+
+  // Pops a note under the icon when the main shortcut starts being withheld, because the lock
+  // on the icon alone is easy to miss. Clicking the note opens the history.
+  @MainActor
+  private func showSecureInputBubbleIfNeeded() {
+    let lines = secureInputHintLines
+    let show = secureInputBubbleSchedule.shouldShow(
+      blocked: lines != nil, holder: SecureInputMonitor.shared.holderName, now: Date()
+    )
+    guard let lines else {
+      secureInputBubble?.hide()
+      return
+    }
+    guard show else { return }
+    let bubble = secureInputBubble ?? SecureInputBubble()
+    bubble.onClick = { [weak self] in self?.showHistory() }
+    secureInputBubble = bubble
+    bubble.show(lines: lines, below: statusItem.isVisible ? statusItem.button : nil)
   }
 
   // Adds a lock to the menu bar icon and explains it in the tooltip while the shortcut is withheld.
